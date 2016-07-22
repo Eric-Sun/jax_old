@@ -49,7 +49,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.apache.httpcomponents:httpclient:4.3.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.apache.httpcomponents:httpcore:4.3.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: commons-codec:commons-codec:1.6" level="project" />
-    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.0.8" level="project" />
+    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.13" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-server:8.1.9.v20130131" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.jetty.orbit:javax.servlet:3.0.0.v201112011016" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-continuation:8.1.9.v20130131" level="project" />
