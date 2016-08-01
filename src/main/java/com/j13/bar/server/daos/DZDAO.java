@@ -49,7 +49,7 @@ public class DZDAO {
 
     public long insert(final long userId, final String content, final long imgId, final String md5, final int fetchSource,
                        final String sourceId) {
-        final String sql = "insert into dz (user_id,content,img_id,createtime,md5,source,source_id) values (?,?,?,now(),?,?,?)";
+        final String sql = "insert into dz (user_id,content,img_id,createtime,md5,source,source_dz_id) values (?,?,?,now(),?,?,?)";
         KeyHolder holder = new GeneratedKeyHolder();
 
         j.update(new PreparedStatementCreator() {

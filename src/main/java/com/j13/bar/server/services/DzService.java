@@ -35,7 +35,7 @@ public class DzService {
         String content = request.getString("content");
         String md5 = request.getString("md5");
         int fetchSource = request.getInteger("fetchSource");
-        String sourceId = request.getString("sourceId");
+        String sourceId = request.getString("sourceDZId");
 
         // 查看该内容是否有
         if (dzDAO.checkExist(md5)) {

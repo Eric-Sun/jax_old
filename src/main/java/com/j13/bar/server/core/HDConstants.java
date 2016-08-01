@@ -19,6 +19,11 @@ public class HDConstants {
 
     public static int DEFAULT_IMG_ID = 0;
 
+    public static class User {
+        public static int COMMON_USER = 0;
+        public static int MACHINE_USER = 1;
+    }
+
     public static class FetchSource {
         public static int UGC = 0;
         public static int QSBK = 1;
@@ -30,7 +35,6 @@ public class HDConstants {
         public static int SUCCESS = 0;
         public static int FAILURE = 1;
     }
-
 
 
 }

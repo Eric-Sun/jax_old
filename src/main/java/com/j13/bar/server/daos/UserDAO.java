@@ -38,9 +38,10 @@ public class UserDAO {
         }
     }
 
-    public long register(final String mobile, final String password, final String nickName) {
+
+    public long register(final String mobile, final String password, final String nickName, final int isMachine) {
         KeyHolder holder = new GeneratedKeyHolder();
-        final String sql = "insert into user(mobile,password,nick_name,create_time) values(?,?,?,now())";
+        final String sql = "insert into user(mobile,password,nick_name,create_time,is_machine) values(?,?,?,now(),?)";
         j.update(new PreparedStatementCreator() {
             @Override
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
@@ -48,6 +49,7 @@ public class UserDAO {
                 pstmt.setString(1, mobile);
                 pstmt.setString(2, password);
                 pstmt.setString(3, nickName);
+                pstmt.setInt(4, isMachine);
                 return pstmt;
             }
         }, holder);
