@@ -4,6 +4,7 @@ import com.j13.bar.server.core.HDConstants;
 import com.j13.bar.server.core.RequestData;
 import com.j13.bar.server.daos.DZCursorDAO;
 import com.j13.bar.server.daos.DZDAO;
+import com.j13.bar.server.helper.MachineUserHolder;
 import com.j13.bar.server.vos.DZVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +19,8 @@ public class DzService {
 
     @Autowired
     DZDAO dzDAO;
+    @Autowired
+    MachineUserHolder machineUserHolder;
 
     @Autowired
     DZCursorDAO dzCursorDAO;
@@ -31,18 +34,19 @@ public class DzService {
     }
 
 
-    public long add(RequestData request) {
+    public long addFetchedDZ(RequestData request) {
         String content = request.getString("content");
         String md5 = request.getString("md5");
         int fetchSource = request.getInteger("fetchSource");
         String sourceId = request.getString("sourceDZId");
+        int machineUser = machineUserHolder.randomOne();
 
         // 查看该内容是否有
         if (dzDAO.checkExist(md5)) {
             LOG.info("dz existed. md5 = " + md5);
             return -1;
         }
-        long id = dzDAO.insert(HDConstants.MACHINE_USER_ID, content, HDConstants.DEFAULT_IMG_ID, md5, fetchSource,
+        long id = dzDAO.insert(machineUser, content, HDConstants.DEFAULT_IMG_ID, md5, fetchSource,
                 sourceId);
 
         LOG.info("dz insert .id = " + id);

@@ -21,8 +21,8 @@ public class DZDAO {
 
 
     public List<DZVO> list10(long dzId) {
-        String sql = "select id,user_id,content from dz  where " +
-                "id in (?,?,?,?,?,?,?,?,?,?) ";
+        String sql = "select d.id,d.user_id,d.content,u.nick_name,u.img from dz d left join user u on u.id=d.user_id  where " +
+                "d.id in (?,?,?,?,?,?,?,?,?,?) ";
         long dzId1 = dzId;
         long dzId2 = dzId1 + 1;
         long dzId3 = dzId2 + 1;
@@ -41,6 +41,8 @@ public class DZDAO {
                 DZVO.setId(rs.getLong(1));
                 DZVO.setUserId(rs.getLong(2));
                 DZVO.setContent(rs.getString(3));
+                DZVO.setUserName(rs.getString(4));
+                DZVO.setImg(rs.getString(5));
                 return DZVO;
             }
         });

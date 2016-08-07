@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -83,5 +84,10 @@ public class UserDAO {
         } catch (Exception e) {
             throw null;
         }
+    }
+
+    public List<Integer> loadAllMachineUser() {
+        String sql = "select id from user where is_machine=1";
+        return j.queryForList(sql, new Object[]{}, Integer.class);
     }
 }
