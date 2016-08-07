@@ -3,6 +3,10 @@ package com.j13.bar.server.controllers;
 import com.alibaba.fastjson.JSON;
 import com.j13.bar.server.core.HDConstants;
 import com.j13.bar.server.core.ResponseData;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadBase;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
 
 @Controller
 public class APIController {
@@ -25,9 +32,14 @@ public class APIController {
     @RequestMapping("/")
     @ResponseBody
     public String dispatch(HttpServletRequest request, HttpServletResponse response) {
+
+        FileItem file = null;
+        //3、判断提交上来的数据是否是上传表单的数据
         response.setContentType("text/html;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
-        try {
+        try
+
+        {
             String act = request.getParameter("act");
             int uid = 0;
             if (request.getParameter("uid") != null) {
@@ -39,8 +51,31 @@ public class APIController {
                 deviceId = request.getParameter("deviceId");
             }
 
+            if (ServletFileUpload.isMultipartContent(request)) {
+                DiskFileItemFactory factory = new DiskFileItemFactory();
+                ServletFileUpload upload = new ServletFileUpload(factory);
+                upload.setHeaderEncoding("UTF-8");
+                List<FileItem> list = upload.parseRequest(request);
+                for (FileItem item : list) {
+                    if (!item.isFormField()) {
+                        file = item;
+                    } else {
+                        if (item.getFieldName().equals("act")) {
+                            act = item.getString();
+                        } else if (item.getFieldName().equals("uid")) {
+                            uid = new Integer(item.getString());
+                        } else if (item.getFieldName().equals("args")) {
+                            args = item.getString();
+                        } else if (item.getFieldName().equals("deviceId")) {
+                            deviceId = item.getString();
+                        }
+                    }
+                }
+
+            }
+
             LOG.info(JSON.toJSONString(request.getParameterMap()));
-            Object resp = hdDispatcher.handle(act, uid, deviceId, args, request.getRemoteAddr());
+            Object resp = hdDispatcher.handle(act, uid, deviceId, args, file, request.getRemoteAddr());
             String respContent = JSON.toJSONString(new HDResponse(resp, uid, HDConstants.ResponseStatus.SUCCESS));
             LOG.info(respContent);
             response.getWriter().write(respContent);
@@ -58,7 +93,6 @@ public class APIController {
             return null;
         }
     }
-
 }
 
 class HDResponse {

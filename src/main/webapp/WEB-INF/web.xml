@@ -33,6 +33,9 @@
         <filter-name>SpringCharacterEncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <listener>
+        <listener-class>com.j13.bar.server.core.JaxListener</listener-class>
+    </listener>
     <!--<filter>-->
         <!--<filter-name>shiroFilter</filter-name>-->
         <!--<filter-class>org.springframework.web.filter.DelegatingFilterProxy-->

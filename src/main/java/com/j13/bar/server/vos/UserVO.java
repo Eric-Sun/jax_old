@@ -8,8 +8,17 @@ package com.j13.bar.server.vos;
  * To change this template use File | Settings | File Templates.
  */
 public class UserVO {
-    long uid;
+    long id;
     private String nickName;
+    private String img;
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
 
     public String getNickName() {
         return nickName;
@@ -19,11 +28,11 @@ public class UserVO {
         this.nickName = nickName;
     }
 
-    public long getUid() {
-        return uid;
+    public long getId() {
+        return id;
     }
 
-    public void setUid(long uid) {
-        this.uid = uid;
+    public void setId(long id) {
+        this.id = id;
     }
 }

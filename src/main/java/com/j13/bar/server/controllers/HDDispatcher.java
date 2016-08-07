@@ -6,6 +6,7 @@ import com.google.common.collect.Lists;
 import com.j13.bar.server.core.*;
 import com.j13.bar.server.core.exception.CommonRequestException;
 import com.j13.bar.server.core.exception.RequestFatalException;
+import org.apache.commons.fileupload.FileItem;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -25,7 +26,7 @@ public class HDDispatcher implements ApplicationContextAware {
     private ApplicationContext applicationContext;
     private final static String SUFFIX = "Service";
 
-    public Object handle(String act, int uid, String deviceId, String args, String remoteIp) throws Exception {
+    public Object handle(String act, int uid, String deviceId, String args, FileItem file, String remoteIp) throws Exception {
         Object responseData = null;
         Iterator<String> iter = Splitter.on(".").split(act).iterator();
         String mod = iter.next();
@@ -39,6 +40,7 @@ public class HDDispatcher implements ApplicationContextAware {
         Object beanObj = applicationContext.getBean(sb.toString());
         Class clazz = beanObj.getClass();
         requestData.setUid(uid);
+        requestData.setFile(file);
         requestData.setDeviceId(deviceId);
         try {
             Method m = clazz.getMethod(act, new Class[]{RequestData.class});

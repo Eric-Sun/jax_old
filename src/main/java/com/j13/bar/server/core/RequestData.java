@@ -1,5 +1,7 @@
 package com.j13.bar.server.core;
 
+import org.apache.commons.fileupload.FileItem;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,6 +9,15 @@ public class RequestData extends HashMap<String, Object> {
 
     private int uid;
     private String deviceId;
+    private FileItem file;
+
+    public FileItem getFile() {
+        return file;
+    }
+
+    public void setFile(FileItem file) {
+        this.file = file;
+    }
 
     public String getDeviceId() {
         return deviceId;
