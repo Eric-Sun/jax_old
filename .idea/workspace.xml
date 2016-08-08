@@ -1,28 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="239e95d5-f826-4059-b689-a8ffd3a480cd" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/j13/bar/server/controllers/APIController.class" afterPath="$PROJECT_DIR$/target/classes/com/j13/bar/server/controllers/APIController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/j13/bar/server/daos/DZCursorDAO$1.class" afterPath="$PROJECT_DIR$/target/classes/com/j13/bar/server/daos/DZCursorDAO$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/j13/bar/server/daos/DZCursorDAO.class" afterPath="$PROJECT_DIR$/target/classes/com/j13/bar/server/daos/DZCursorDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/j13/bar/server/daos/DZDAO$1.class" afterPath="$PROJECT_DIR$/target/classes/com/j13/bar/server/daos/DZDAO$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/j13/bar/server/daos/DZDAO$2.class" afterPath="$PROJECT_DIR$/target/classes/com/j13/bar/server/daos/DZDAO$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/j13/bar/server/daos/DZDAO.class" afterPath="$PROJECT_DIR$/target/classes/com/j13/bar/server/daos/DZDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/j13/bar/server/services/DzService.class" afterPath="$PROJECT_DIR$/target/classes/com/j13/bar/server/services/DzService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/j13/bar/server/controllers/HDDispatcher.class" afterPath="$PROJECT_DIR$/target/classes/com/j13/bar/server/controllers/HDDispatcher.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/j13/bar/server/starter/JettyServer.class" afterPath="$PROJECT_DIR$/target/classes/com/j13/bar/server/starter/JettyServer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/j13/bar/server/utils/MD5Util.class" afterPath="$PROJECT_DIR$/target/classes/com/j13/bar/server/utils/MD5Util.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/j13/bar/server/core/config/PropertiesConfiguration.class" afterPath="$PROJECT_DIR$/target/classes/com/j13/bar/server/core/config/PropertiesConfiguration.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/j13/bar/server/utils/QiniuManager.class" afterPath="$PROJECT_DIR$/target/classes/com/j13/bar/server/utils/QiniuManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/j13/bar/server/daos/UserDAO$1.class" afterPath="$PROJECT_DIR$/target/classes/com/j13/bar/server/daos/UserDAO$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/j13/bar/server/daos/UserDAO.class" afterPath="$PROJECT_DIR$/target/classes/com/j13/bar/server/daos/UserDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.jar" afterPath="$PROJECT_DIR$/server.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/daos/DZDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/daos/DZDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/DzService.java" afterPath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/DzService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/dataSource.xml" afterPath="$PROJECT_DIR$/target/classes/dataSource.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/log4j.properties" afterPath="$PROJECT_DIR$/target/classes/log4j.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="239e95d5-f826-4059-b689-a8ffd3a480cd" name="Default" comment="" />
     <ignored path="che.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -113,8 +92,8 @@
       <file leaf-file-name="QueuedThreadPool.java" pinned="false" current-in-tab="true">
         <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-util/8.1.9.v20130131/jetty-util-8.1.9.v20130131-sources.jar!/org/eclipse/jetty/util/thread/QueuedThreadPool.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.24050634" vertical-offset="8230" max-vertical-offset="8625">
-              <caret line="664" column="30" selection-start-line="664" selection-start-column="28" selection-end-line="664" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.35443038" vertical-offset="8230" max-vertical-offset="8625">
+              <caret line="667" column="53" selection-start-line="667" selection-start-column="13" selection-end-line="667" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -973,12 +952,12 @@
       <workItem from="1470492692509" duration="1013000" />
       <workItem from="1470493796293" duration="6153000" />
       <workItem from="1470672051129" duration="9000" />
-      <workItem from="1470672468906" duration="1179000" />
+      <workItem from="1470672468906" duration="1241000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="112898000" />
+    <option name="totallyTimeSpent" value="112960000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1528,8 +1507,8 @@
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-util/8.1.9.v20130131/jetty-util-8.1.9.v20130131-sources.jar!/org/eclipse/jetty/util/thread/QueuedThreadPool.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24050634" vertical-offset="8230" max-vertical-offset="8625">
-          <caret line="664" column="30" selection-start-line="664" selection-start-column="28" selection-end-line="664" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.35443038" vertical-offset="8230" max-vertical-offset="8625">
+          <caret line="667" column="53" selection-start-line="667" selection-start-column="13" selection-end-line="667" selection-end-column="13" />
           <folding />
         </state>
       </provider>
