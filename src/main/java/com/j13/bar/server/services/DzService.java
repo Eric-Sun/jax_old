@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Random;
 
 @Service("DzService")
 public class DzService {
@@ -53,5 +54,17 @@ public class DzService {
         return id;
     }
 
+
+    public int setMachineUserToDZ(RequestData requestData) {
+        int limitSize = requestData.getInteger("size");
+        List<Integer> list = dzDAO.getNoUserDZ(limitSize);
+        for (Integer dzId : list) {
+            int randomMachineUserId = machineUserHolder.randomOne();
+            dzDAO.updateDZWithMachineUser(dzId, randomMachineUserId);
+            LOG.info("update dz with machine user. dzId={} machineUserId={}", dzId, randomMachineUserId);
+        }
+        LOG.info("update dz finished . size={}", list.size());
+        return list.size();
+    }
 
 }

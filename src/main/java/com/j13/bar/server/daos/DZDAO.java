@@ -75,4 +75,16 @@ public class DZDAO {
         String sql = "select count(1) from dz where md5=?";
         return j.queryForInt(sql, new Object[]{md5}) == 0 ? false : true;
     }
+
+
+    public List<Integer> getNoUserDZ(int limitSize) {
+        String sql = "select id from dz where user_id=1 limit " + limitSize;
+        return j.queryForList(sql, new Object[]{}, Integer.class);
+    }
+
+
+    public void updateDZWithMachineUser(int dzId, int machineUserId) {
+        String sql = "update dz set user_id=? where id=?";
+        j.update(sql,new Object[]{machineUserId,dzId});
+    }
 }
