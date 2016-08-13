@@ -42,15 +42,11 @@ public class HDDispatcher implements ApplicationContextAware {
         requestData.setUid(uid);
         requestData.setFile(file);
         requestData.setDeviceId(deviceId);
-        try {
-            Method m = clazz.getMethod(act, new Class[]{RequestData.class});
+        Method m = clazz.getMethod(act, new Class[]{RequestData.class});
 
-            responseData = m.invoke(beanObj, new Object[]{requestData});
-            return responseData;
+        responseData = m.invoke(beanObj, new Object[]{requestData});
+        return responseData;
 
-        } catch (Exception e) {
-            throw e;
-        }
     }
 
 

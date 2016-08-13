@@ -10,6 +10,7 @@ import com.j13.bar.server.utils.MD5Util;
 import com.j13.bar.server.vos.UserVO;
 import org.apache.commons.fileupload.FileItem;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -32,8 +33,10 @@ public class UserService {
         String mobile = rd.getString("mobile");
         String password = rd.getString("password");
         String passwordAfterMD5 = MD5Util.getMD5String(password);
-        UserVO vo = userDAO.loginByMobile(mobile, passwordAfterMD5);
-        if (vo == null) {
+        UserVO vo = null;
+        try {
+            vo = userDAO.loginByMobile(mobile, passwordAfterMD5);
+        } catch (EmptyResultDataAccessException e) {
             LOG.info("password error. mobile={},password={}", mobile, password);
             throw new CommonException(ErrorCode.PASSWORD_NOT_RIGHT);
         }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 @Controller
@@ -83,11 +84,20 @@ public class APIController {
             response.getWriter().write(respContent);
             response.flushBuffer();
             return null;
-        } catch (CommonException e) {
-            LOG.error(String.format("WARN act=%s,uid=%s,args=%s,deviceId=%s", act, uid, args, deviceId), e);
-            response.getWriter().write(JSON.toJSONString(new HDResponse(new ResponseData().put("errorCode", e.getErrorCode()), 0, HDConstants.ResponseStatus.FAILURE)));
-            response.flushBuffer();
-            return null;
+        } catch (InvocationTargetException e) {
+            if (e.getCause() instanceof CommonException) {
+                CommonException ce = (CommonException) e.getCause();
+                ResponseData rpd = new ResponseData();
+                rpd.put("errorCode", ce.getErrorCode());
+                response.getWriter().write(JSON.toJSONString(new HDResponse(rpd, 0, HDConstants.ResponseStatus.FAILURE)));
+                response.flushBuffer();
+                return null;
+            } else {
+                LOG.error(String.format("Attention!!! [UNEXPECTED] ERROR. act=%s,uid=%s,args=%s,deviceId=%s", act, uid, args, deviceId), e);
+                response.getWriter().write(JSON.toJSONString(new HDResponse(new ResponseData(), 0, HDConstants.ResponseStatus.UNEXCEPED_FAILURE)));
+                response.flushBuffer();
+                return null;
+            }
         } catch (Exception e) {
             LOG.error(String.format("Attention!!! [UNEXPECTED] ERROR. act=%s,uid=%s,args=%s,deviceId=%s", act, uid, args, deviceId), e);
             response.getWriter().write(JSON.toJSONString(new HDResponse(new ResponseData(), 0, HDConstants.ResponseStatus.UNEXCEPED_FAILURE)));
