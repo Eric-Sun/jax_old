@@ -3,8 +3,8 @@ package com.j13.bar.server.controllers;
 import com.alibaba.fastjson.JSON;
 import com.j13.bar.server.core.HDConstants;
 import com.j13.bar.server.core.ResponseData;
+import com.j13.bar.server.exceptions.CommonException;
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadBase;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.slf4j.Logger;
@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 @Controller
@@ -31,22 +29,26 @@ public class APIController {
 
     @RequestMapping("/")
     @ResponseBody
-    public String dispatch(HttpServletRequest request, HttpServletResponse response) {
+    public String dispatch(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         FileItem file = null;
         //3、判断提交上来的数据是否是上传表单的数据
         response.setContentType("text/html;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
+        String act = null;
+        int uid = 0;
+        String args = null;
+        String deviceId = null;
         try
 
         {
-            String act = request.getParameter("act");
-            int uid = 0;
+            act = request.getParameter("act");
+            uid = 0;
             if (request.getParameter("uid") != null) {
                 uid = new Integer(request.getParameter("uid"));
             }
-            String args = request.getParameter("args");
-            String deviceId = null;
+            args = request.getParameter("args");
+            deviceId = null;
             if (request.getParameter("deviceId") != null) {
                 deviceId = request.getParameter("deviceId");
             }
@@ -81,15 +83,15 @@ public class APIController {
             response.getWriter().write(respContent);
             response.flushBuffer();
             return null;
+        } catch (CommonException e) {
+            LOG.error(String.format("WARN act=%s,uid=%s,args=%s,deviceId=%s", act, uid, args, deviceId), e);
+            response.getWriter().write(JSON.toJSONString(new HDResponse(new ResponseData().put("errorCode", e.getErrorCode()), 0, HDConstants.ResponseStatus.FAILURE)));
+            response.flushBuffer();
+            return null;
         } catch (Exception e) {
-            try {
-                LOG.error("", e);
-                response.getWriter().write(JSON.toJSONString(new HDResponse(new ResponseData(), 0, HDConstants.ResponseStatus.FAILURE)));
-                response.flushBuffer();
-
-            } catch (IOException e1) {
-                LOG.error("", e);
-            }
+            LOG.error(String.format("Attention!!! [UNEXPECTED] ERROR. act=%s,uid=%s,args=%s,deviceId=%s", act, uid, args, deviceId), e);
+            response.getWriter().write(JSON.toJSONString(new HDResponse(new ResponseData(), 0, HDConstants.ResponseStatus.UNEXCEPED_FAILURE)));
+            response.flushBuffer();
             return null;
         }
     }

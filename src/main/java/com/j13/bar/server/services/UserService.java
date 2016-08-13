@@ -2,17 +2,15 @@ package com.j13.bar.server.services;
 
 import com.j13.bar.server.core.HDConstants;
 import com.j13.bar.server.core.RequestData;
-import com.j13.bar.server.core.log.HDLogger;
-import com.j13.bar.server.core.log.HDLoggerEntity;
+import com.j13.bar.server.core.log.LOG;
 import com.j13.bar.server.daos.UserDAO;
-import com.j13.bar.server.exceptions.PasswordErrorException;
+import com.j13.bar.server.exceptions.CommonException;
+import com.j13.bar.server.exceptions.ErrorCode;
 import com.j13.bar.server.utils.MD5Util;
 import com.j13.bar.server.vos.UserVO;
 import org.apache.commons.fileupload.FileItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -30,17 +28,16 @@ public class UserService {
     @Autowired
     ThumbService thumbService;
 
-//    public UserVO login(String mobile, String password) throws PasswordErrorException {
-//        String passwordAfterMD5 = MD5Util.getMD5String(password);
-//        UserVO vo = userDAO.loginByMobile(mobile, passwordAfterMD5);
-//        return vo;
-//    }
-
-
-    public UserVO getMachineUserInfo(RequestData requestData) {
-        int userId = requestData.getInteger("userId");
-        UserVO userVO = userDAO.getMachineUserInfo(userId);
-        return userVO;
+    public UserVO login(RequestData rd) {
+        String mobile = rd.getString("mobile");
+        String password = rd.getString("password");
+        String passwordAfterMD5 = MD5Util.getMD5String(password);
+        UserVO vo = userDAO.loginByMobile(mobile, passwordAfterMD5);
+        if (vo == null) {
+            LOG.info("password error. mobile={},password={}", mobile, password);
+            throw new CommonException(ErrorCode.PASSWORD_NOT_RIGHT);
+        }
+        return vo;
     }
 
     /**
@@ -57,12 +54,16 @@ public class UserService {
 
 
         // check mobile exists
-        if (isMachine != HDConstants.USER_IS_MACHINE && userDAO.mobileExisted(mobile))
-            return -1;
+        if (isMachine != HDConstants.USER_IS_MACHINE && userDAO.mobileExisted(mobile)) {
+            LOG.info("mobile existed. mobile={}", mobile);
+            throw new CommonException(ErrorCode.MOBILE_EXISTED);
+        }
 
         // check nickName exists
-        if (userDAO.nickNameExisted(nickName))
-            return -2;
+        if (userDAO.nickNameExisted(nickName)) {
+            LOG.info("nickname existed. nickname={}", nickName);
+            throw new CommonException(ErrorCode.NICKNAME_EXISTED);
+        }
 
         String passwordAfterMD5 = MD5Util.getMD5String(password);
         FileItem file = request.getFile();
@@ -76,9 +77,6 @@ public class UserService {
 
         return id;
     }
-
-
-
 
 
 }

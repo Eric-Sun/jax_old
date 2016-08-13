@@ -1,6 +1,5 @@
 package com.j13.bar.server.daos;
 
-import com.j13.bar.server.exceptions.PasswordErrorException;
 import com.j13.bar.server.vos.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -29,14 +28,11 @@ public class UserDAO {
     JdbcTemplate j;
 
 
-    public UserVO loginByMobile(String mobile, String password) throws PasswordErrorException {
-        final String sql = "select id,nick_name from user where mobile=? and password=?";
-        try {
-            UserVO vo = j.queryForObject(sql, new Object[]{mobile, password}, new BeanPropertyRowMapper<UserVO>(UserVO.class));
-            return vo;
-        } catch (Exception e) {
-            throw new PasswordErrorException("mobile=" + mobile + " password=" + password, e);
-        }
+    public UserVO loginByMobile(String mobile, String password) {
+        final String sql = "select id,nick_name,img from user where mobile=? and password=?";
+        UserVO vo = j.queryForObject(sql, new Object[]{mobile, password}, new BeanPropertyRowMapper<UserVO>(UserVO.class));
+        return vo;
+
     }
 
 
