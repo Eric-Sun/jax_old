@@ -85,6 +85,23 @@ public class DZDAO {
 
     public void updateDZWithMachineUser(int dzId, int machineUserId) {
         String sql = "update dz set user_id=? where id=?";
-        j.update(sql,new Object[]{machineUserId,dzId});
+        j.update(sql, new Object[]{machineUserId, dzId});
+    }
+
+    public DZVO getMachineDZ(int dzId) {
+        String sql = "select d.id,d.user_id,d.content,u.nick_name,u.img from dz d left join user u on u.id=d.user_id  where " +
+                "d.id = ? and is_machine=1";
+        return j.queryForObject(sql, new Object[]{dzId}, new RowMapper<DZVO>() {
+            @Override
+            public DZVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+                DZVO DZVO = new DZVO();
+                DZVO.setId(rs.getLong(1));
+                DZVO.setUserId(rs.getLong(2));
+                DZVO.setContent(rs.getString(3));
+                DZVO.setUserName(rs.getString(4));
+                DZVO.setImg(rs.getString(5));
+                return DZVO;
+            }
+        });
     }
 }

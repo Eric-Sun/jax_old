@@ -1,12 +1,21 @@
 package com.j13.bar.server.vos;
 
 public class DZVO {
+    private long fid;
 
     private long id;
     private long userId;
     private String content;
     private String userName;
     private String img;
+
+    public long getFid() {
+        return fid;
+    }
+
+    public void setFid(long fid) {
+        this.fid = fid;
+    }
 
     public String getUserName() {
         return userName;

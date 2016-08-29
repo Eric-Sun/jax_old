@@ -89,18 +89,24 @@ public class APIController {
                 CommonException ce = (CommonException) e.getCause();
                 ResponseData rpd = new ResponseData();
                 rpd.put("errorCode", ce.getErrorCode());
-                response.getWriter().write(JSON.toJSONString(new HDResponse(rpd, 0, HDConstants.ResponseStatus.FAILURE)));
+                String respContent = JSON.toJSONString(new HDResponse(rpd, 0, HDConstants.ResponseStatus.FAILURE));
+                LOG.info(respContent);
+                response.getWriter().write(respContent);
                 response.flushBuffer();
                 return null;
             } else {
                 LOG.error(String.format("Attention!!! [UNEXPECTED] ERROR. act=%s,uid=%s,args=%s,deviceId=%s", act, uid, args, deviceId), e);
-                response.getWriter().write(JSON.toJSONString(new HDResponse(new ResponseData(), 0, HDConstants.ResponseStatus.UNEXCEPED_FAILURE)));
+                String respContent = JSON.toJSONString(new HDResponse(new ResponseData(), 0, HDConstants.ResponseStatus.UNEXCEPED_FAILURE));
+                LOG.info(respContent);
+                response.getWriter().write(respContent);
                 response.flushBuffer();
                 return null;
             }
         } catch (Exception e) {
             LOG.error(String.format("Attention!!! [UNEXPECTED] ERROR. act=%s,uid=%s,args=%s,deviceId=%s", act, uid, args, deviceId), e);
-            response.getWriter().write(JSON.toJSONString(new HDResponse(new ResponseData(), 0, HDConstants.ResponseStatus.UNEXCEPED_FAILURE)));
+            String respContent = JSON.toJSONString(new HDResponse(new ResponseData(), 0, HDConstants.ResponseStatus.UNEXCEPED_FAILURE));
+            LOG.info(respContent);
+            response.getWriter().write(respContent);
             response.flushBuffer();
             return null;
         }

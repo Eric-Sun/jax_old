@@ -34,6 +34,12 @@ public class DzService {
         return dzvoList;
     }
 
+    public DZVO getDZ(RequestData rd) {
+        int dzId = rd.getInteger("dzId");
+        DZVO dz = dzDAO.getMachineDZ(dzId);
+        return dz;
+    }
+
 
     public long addFetchedDZ(RequestData request) {
         String content = request.getString("content");
