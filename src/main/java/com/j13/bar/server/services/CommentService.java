@@ -20,8 +20,9 @@ public class CommentService {
         int userId = machineUserHolder.randomOne();
         String content = rd.getString("content");
         int dzId = rd.getInteger("dzId");
+        String sourceCommentId = rd.getString("sourceCommentId");
         int hot = rd.getInteger("hot");
-        int cId = commentDAO.add(dzId, userId, content, hot);
+        int cId = commentDAO.add(dzId, userId, content, hot, sourceCommentId);
         return cId;
     }
 
@@ -29,9 +30,10 @@ public class CommentService {
     public int addMachineTop(RequestData rd) {
         int userId = machineUserHolder.randomOne();
         String content = rd.getString("content");
+        String sourceCommentId = rd.getString("sourceCommentId");
         int dzId = rd.getInteger("dzId");
         int hot = rd.getInteger("hot");
-        int cId = commentDAO.addTop(dzId, userId, content, hot);
+        int cId = commentDAO.addTop(dzId, userId, content, hot, sourceCommentId);
         return cId;
     }
 

@@ -19,9 +19,10 @@ public class CommentDAO {
     @Autowired
     JdbcTemplate j;
 
-    public int add(final int dzId, final int userId, final String content, final int hot) {
+    public int add(final int dzId, final int userId, final String content, final int hot,
+                   final String sourceCommentId) {
 
-        final String sql = "insert into comment (dz_id,user_id,content,createtime,hot) values (?,?,?,now(),?)";
+        final String sql = "insert into comment (dz_id,user_id,content,createtime,hot,source_comment_id) values (?,?,?,now(),?,?)";
         KeyHolder holder = new GeneratedKeyHolder();
 
         j.update(new PreparedStatementCreator() {
@@ -32,6 +33,7 @@ public class CommentDAO {
                 pstmt.setInt(2, userId);
                 pstmt.setString(3, content);
                 pstmt.setInt(4, hot);
+                pstmt.setString(5, sourceCommentId);
                 return pstmt;
             }
         }, holder);
@@ -75,8 +77,9 @@ public class CommentDAO {
         });
     }
 
-    public int addTop(final int dzId, final int userId, final String content, final int hot) {
-        final String sql = "insert into comment (dz_id,user_id,content,createtime,is_top,hot) values (?,?,?,now(),?,?)";
+    public int addTop(final int dzId, final int userId, final String content, final int hot,
+                      final String sourceCommentId) {
+        final String sql = "insert into comment (dz_id,user_id,content,createtime,is_top,hot,source_comment_id) values (?,?,?,now(),?,?,?)";
         KeyHolder holder = new GeneratedKeyHolder();
 
         j.update(new PreparedStatementCreator() {
@@ -88,6 +91,7 @@ public class CommentDAO {
                 pstmt.setString(3, content);
                 pstmt.setInt(4, 1);
                 pstmt.setInt(5, hot);
+                pstmt.setString(6, sourceCommentId);
                 return pstmt;
             }
         }, holder);
