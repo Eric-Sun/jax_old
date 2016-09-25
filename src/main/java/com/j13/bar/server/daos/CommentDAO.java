@@ -19,8 +19,8 @@ public class CommentDAO {
     @Autowired
     JdbcTemplate j;
 
-    public int add(final int dzId, final int userId, final String content, final int hot,
-                   final String sourceCommentId) {
+    public int addMachine(final int dzId, final int userId, final String content, final int hot,
+                          final String sourceCommentId) {
 
         final String sql = "insert into comment (dz_id,user_id,content,createtime,hot,source_comment_id) values (?,?,?,now(),?,?)";
         KeyHolder holder = new GeneratedKeyHolder();
@@ -77,8 +77,8 @@ public class CommentDAO {
         });
     }
 
-    public int addTop(final int dzId, final int userId, final String content, final int hot,
-                      final String sourceCommentId) {
+    public int addMachineTop(final int dzId, final int userId, final String content, final int hot,
+                             final String sourceCommentId) {
         final String sql = "insert into comment (dz_id,user_id,content,createtime,is_top,hot,source_comment_id) values (?,?,?,now(),?,?,?)";
         KeyHolder holder = new GeneratedKeyHolder();
 
@@ -92,6 +92,24 @@ public class CommentDAO {
                 pstmt.setInt(4, 1);
                 pstmt.setInt(5, hot);
                 pstmt.setString(6, sourceCommentId);
+                return pstmt;
+            }
+        }, holder);
+
+        return holder.getKey().intValue();
+    }
+
+    public int add(final int dzId, final int userId, final String content) {
+        final String sql = "insert into comment (dz_id,user_id,content,createtime) values (?,?,?,now())";
+        KeyHolder holder = new GeneratedKeyHolder();
+
+        j.update(new PreparedStatementCreator() {
+            @Override
+            public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+                PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                pstmt.setInt(1, dzId);
+                pstmt.setInt(2, userId);
+                pstmt.setString(3, content);
                 return pstmt;
             }
         }, holder);

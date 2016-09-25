@@ -4,13 +4,19 @@ import com.j13.bar.server.core.HDConstants;
 import com.j13.bar.server.core.RequestData;
 import com.j13.bar.server.daos.DZCursorDAO;
 import com.j13.bar.server.daos.DZDAO;
+import com.j13.bar.server.exceptions.CommonException;
+import com.j13.bar.server.exceptions.ErrorCode;
 import com.j13.bar.server.helper.MachineUserHolder;
+import com.j13.bar.server.utils.MD5Util;
 import com.j13.bar.server.vos.DZVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -53,7 +59,7 @@ public class DzService {
             LOG.info("dz existed. md5 = " + md5);
             return -1;
         }
-        long id = dzDAO.insert(machineUser, content, HDConstants.DEFAULT_IMG_ID, md5, fetchSource,
+        long id = dzDAO.addMachine(machineUser, content, HDConstants.DEFAULT_IMG_ID, md5, fetchSource,
                 sourceId);
 
         LOG.info("dz insert .id = " + id);
@@ -73,4 +79,30 @@ public class DzService {
         return list.size();
     }
 
+    public int add(RequestData rd) {
+        int userId = rd.getInteger("userId");
+        String content = rd.getString("content");
+
+        String md5 = MD5Util.getMD5String(content);
+
+        if (dzDAO.checkExist(md5)) {
+            LOG.info("dz existed. md5 = " + md5);
+            return -1;
+        }
+        return dzDAO.add(userId, content, md5);
+    }
+
+    public List<DZVO> listYesterdayPageNum(RequestData rd) {
+        int pageNum = rd.getInteger("pageNum");
+        int size = rd.getInteger("size");
+        String dateString = rd.getString("date");
+        Date date = null;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        try {
+            date = sdf.parse(dateString);
+        } catch (ParseException e) {
+            throw new CommonException(ErrorCode.INPUT_PARAMETER_ERROR);
+        }
+        return dzDAO.listOneDayDZ(date, size, pageNum);
+    }
 }

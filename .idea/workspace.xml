@@ -2,9 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="239e95d5-f826-4059-b689-a8ffd3a480cd" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/daos/AdminUserDAO.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/vos/AdminUserVO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.jar" afterPath="$PROJECT_DIR$/server.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/daos/CommentDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/daos/CommentDAO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/CommentService.java" afterPath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/CommentService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/daos/DZDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/daos/DZDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/vos/DZVO.java" afterPath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/vos/DZVO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/DzService.java" afterPath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/DzService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/exceptions/ErrorCode.java" afterPath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/exceptions/ErrorCode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/UserService.java" afterPath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/UserService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="che.iws" />
@@ -75,51 +82,32 @@
       <file leaf-file-name="UserService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/UserService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="720" max-vertical-offset="1200">
-              <caret line="59" column="44" selection-start-line="59" selection-start-column="44" selection-end-line="59" selection-end-column="44" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="645" max-vertical-offset="1320">
+              <caret line="71" column="64" selection-start-line="71" selection-start-column="12" selection-end-line="71" selection-end-column="64" />
               <folding>
-                <element signature="imports" expanded="false" />
+                <element signature="e#1089#1090#0" expanded="true" />
+                <element signature="e#1116#1117#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommentService.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AdminUserDAO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/daos/AdminUserDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="225">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CommentService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/CommentService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.71389645" vertical-offset="248" max-vertical-offset="690">
-              <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CommentDAO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/daos/CommentDAO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="756" max-vertical-offset="1425">
-              <caret line="90" column="44" selection-start-line="90" selection-start-column="44" selection-end-line="90" selection-end-column="44" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <marker date="1472472909000" expanded="true" signature="751:852" placeholder="insert into ..." />
-                <marker date="1472472909000" expanded="true" signature="1584:1735" placeholder="select c.use..comment..." />
-                <marker date="1472472909000" expanded="true" signature="2326:2477" placeholder="select c.use..comment..." />
-                <marker date="1472472909000" expanded="true" signature="3171:3281" placeholder="insert into ..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RequestData.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/core/RequestData.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="375" max-vertical-offset="540">
-              <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-              <folding>
-                <element signature="e#857#858#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="386" max-vertical-offset="795">
+              <caret line="42" column="29" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -127,93 +115,28 @@
       <file leaf-file-name="DzService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/DzService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="645" max-vertical-offset="1050">
-              <caret line="55" column="29" selection-start-line="55" selection-start-column="29" selection-end-line="55" selection-end-column="29" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="1031" max-vertical-offset="1440">
+              <caret line="105" column="29" selection-start-line="105" selection-start-column="29" selection-end-line="105" selection-end-column="29" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DZCursorVO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/vos/DZCursorVO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="300">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-              <folding>
-                <element signature="e#134#135#0" expanded="false" />
-                <element signature="e#161#162#0" expanded="false" />
-                <element signature="e#199#200#0" expanded="false" />
-                <element signature="e#231#232#0" expanded="false" />
-                <element signature="e#262#263#0" expanded="false" />
-                <element signature="e#291#292#0" expanded="false" />
-                <element signature="e#333#334#0" expanded="false" />
-                <element signature="e#369#370#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CommentVO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/vos/CommentVO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
-              <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-              <folding>
-                <element signature="e#581#582#0" expanded="true" />
-                <element signature="e#619#620#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DZDAO.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DZDAO.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/daos/DZDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="381" max-vertical-offset="1410">
-              <caret line="51" column="16" selection-start-line="51" selection-start-column="16" selection-end-line="51" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.23550087" vertical-offset="1636" max-vertical-offset="2205">
+              <caret line="130" column="27" selection-start-line="130" selection-start-column="27" selection-end-line="130" selection-end-column="27" />
               <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#1222#1676#0" expanded="false" />
-                <element signature="e#1675#1676#0" expanded="false" />
-                <element signature="e#2061#2631#0" expanded="false" />
-                <element signature="e#2630#2631#0" expanded="false" />
-                <element signature="e#3552#4006#0" expanded="false" />
-                <element signature="e#4005#4006#0" expanded="false" />
-                <marker date="1472384537000" expanded="true" signature="636:788" placeholder="select d.id,..dz..." />
-                <marker date="1472384537000" expanded="true" signature="1886:1987" placeholder="insert into ..." />
-                <marker date="1472384537000" expanded="true" signature="2760:2795" placeholder="select count..dz..." />
-                <marker date="1472384537000" expanded="true" signature="2956:2996" placeholder="select id fr..dz..." />
-                <marker date="1472384537000" expanded="true" signature="3179:3213" placeholder="update dz se..." />
-                <marker date="1472384537000" expanded="true" signature="3344:3475" placeholder="select d.id,..dz..." />
-                <marker date="1472384537000" expanded="true" signature="3344:3492" placeholder="select d.id,..dz..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HDDispatcher.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/controllers/HDDispatcher.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="138" max-vertical-offset="720">
-              <caret line="38" column="37" selection-start-line="38" selection-start-column="37" selection-end-line="38" selection-end-column="37" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ThumbService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/ThumbService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="258" max-vertical-offset="840">
-              <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#1802#1803#0" expanded="false" />
-                <element signature="e#1830#1831#0" expanded="false" />
+                <element signature="imports" expanded="true" />
+                <marker date="1474126949000" expanded="true" signature="663:815" placeholder="select d.id,..dz..." />
+                <marker date="1474126949000" expanded="true" signature="1921:2022" placeholder="insert into ..." />
+                <marker date="1474126949000" expanded="true" signature="2795:2830" placeholder="select count..dz..." />
+                <marker date="1474126949000" expanded="true" signature="2991:3031" placeholder="select id fr..dz..." />
+                <marker date="1474126949000" expanded="true" signature="3214:3248" placeholder="update dz se..." />
+                <marker date="1474126949000" expanded="true" signature="3379:3527" placeholder="select d.id,..dz..." />
+                <marker date="1474126949000" expanded="true" signature="4159:4236" placeholder="insert into ..." />
+                <marker date="1474126949000" expanded="true" signature="5309:5444" placeholder="select dz.id..dz..." />
               </folding>
             </state>
           </provider>
@@ -237,11 +160,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/core/ResponseData.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/core/PropertiesConfiguration.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/core/CommonRequestException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/core/RequestFatalException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/controllers/SlgDispatcher.java" />
         <option value="$MAVEN_REPOSITORY$/riven/com.j13/1.0-SNAPSHOT/com.j13-1.0-SNAPSHOT.jar!/com/j13/riven/config/HDConstants.class" />
         <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/controllers/inner/InnerDZController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/controllers/inner/InnerUserInnerController.java" />
@@ -274,20 +192,25 @@
         <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/daos/UserDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/core/log/LOG.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/exceptions/CommonException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/exceptions/ErrorCode.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/UserService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/controllers/HDDispatcher.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/controllers/APIController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/vos/DZVO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/daos/DZFavoriteDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/daos/FavoriteDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/FaovriteService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/FavoriteService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/vos/CommentVO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/daos/DZDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/DzService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/daos/CommentDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/CommentService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/daos/CommentDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/AdminUserService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/AdminDZService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/AdminUserDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/daos/AdminUserDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/vos/AdminUserVO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/UserService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/vos/DZVO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/exceptions/ErrorCode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/DzService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/j13/bar/server/daos/DZDAO.java" />
       </list>
     </option>
   </component>
@@ -420,41 +343,11 @@
               <option name="myItemId" value="com" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jax" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jax" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -491,6 +384,9 @@
       <recent name="$PROJECT_DIR$/config" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/main" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.j13.bar.server.services" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
@@ -1052,11 +948,15 @@
       <workItem from="1472458254873" duration="4011000" />
       <workItem from="1472470259442" duration="335000" />
       <workItem from="1472471275371" duration="1786000" />
+      <workItem from="1473133313387" duration="847000" />
+      <workItem from="1473741160346" duration="1686000" />
+      <workItem from="1474113569512" duration="4025000" />
+      <workItem from="1474463880547" duration="124000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="135571000" />
+    <option name="totallyTimeSpent" value="142253000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1090,27 +990,27 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28360656" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35620916" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3262295" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959481" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18739903" sideWeight="0.73594546" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21243942" sideWeight="0.73594546" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.352459" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.352459" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32786885" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28360656" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3262295" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1169,7 +1069,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="34" />
+      <option name="time" value="37" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1178,27 +1078,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/deploy/log4j.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="367">
-          <caret line="0" column="16" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/core/exception/CommonRequestException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210">
-          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/deploy/beans.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="825">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/assembly/all.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="660">
@@ -1395,13 +1274,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/exceptions/ErrorCode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15463917" vertical-offset="0" max-vertical-offset="582">
-          <caret line="6" column="44" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/daos/UserDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="362" max-vertical-offset="1380">
@@ -1427,61 +1299,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="180">
           <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/controllers/APIController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1272" max-vertical-offset="2160">
-          <caret line="107" column="34" selection-start-line="107" selection-start-column="34" selection-end-line="107" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#5228#5229#0" expanded="false" />
-            <element signature="e#5255#5256#0" expanded="false" />
-            <element signature="e#5295#5296#0" expanded="false" />
-            <element signature="e#5327#5328#0" expanded="false" />
-            <element signature="e#5357#5358#0" expanded="false" />
-            <element signature="e#5386#5387#0" expanded="false" />
-            <element signature="e#5427#5428#0" expanded="false" />
-            <element signature="e#5463#5464#0" expanded="false" />
-            <element signature="e#5490#5491#0" expanded="false" />
-            <element signature="e#5516#5517#0" expanded="false" />
-            <element signature="e#5551#5552#0" expanded="false" />
-            <element signature="e#5581#5582#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/vos/DZVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="615">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding>
-            <element signature="e#229#230#0" expanded="false" />
-            <element signature="e#255#256#0" expanded="false" />
-            <element signature="e#291#292#0" expanded="false" />
-            <element signature="e#321#322#0" expanded="false" />
-            <element signature="e#356#357#0" expanded="false" />
-            <element signature="e#387#388#0" expanded="false" />
-            <element signature="e#435#436#0" expanded="false" />
-            <element signature="e#475#476#0" expanded="false" />
-            <element signature="e#505#506#0" expanded="false" />
-            <element signature="e#531#532#0" expanded="false" />
-            <element signature="e#569#570#0" expanded="false" />
-            <element signature="e#599#600#0" expanded="false" />
-            <element signature="e#633#634#0" expanded="false" />
-            <element signature="e#663#664#0" expanded="false" />
-            <element signature="e#709#710#0" expanded="false" />
-            <element signature="e#747#748#0" expanded="false" />
-            <element signature="e#774#775#0" expanded="false" />
-            <element signature="e#799#800#0" expanded="false" />
-            <element signature="e#833#834#0" expanded="false" />
-            <element signature="e#861#862#0" expanded="false" />
-            <element signature="e#892#893#0" expanded="false" />
-            <element signature="e#921#922#0" expanded="false" />
-            <element signature="e#963#964#0" expanded="false" />
-            <element signature="e#999#1000#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1577,137 +1394,144 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/FavoriteService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/vos/CommentVO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="330" max-vertical-offset="525">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/controllers/HDDispatcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="138" max-vertical-offset="720">
-          <caret line="38" column="37" selection-start-line="38" selection-start-column="37" selection-end-line="38" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/ThumbService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="258" max-vertical-offset="840">
-          <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1802#1803#0" expanded="false" />
-            <element signature="e#1830#1831#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/daos/DZDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="381" max-vertical-offset="1410">
-          <caret line="51" column="16" selection-start-line="51" selection-start-column="16" selection-end-line="51" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1222#1676#0" expanded="false" />
-            <element signature="e#1675#1676#0" expanded="false" />
-            <element signature="e#2061#2631#0" expanded="false" />
-            <element signature="e#2630#2631#0" expanded="false" />
-            <element signature="e#3552#4006#0" expanded="false" />
-            <element signature="e#4005#4006#0" expanded="false" />
-            <marker date="1472384537000" expanded="true" signature="636:788" placeholder="select d.id,..dz..." />
-            <marker date="1472384537000" expanded="true" signature="1886:1987" placeholder="insert into ..." />
-            <marker date="1472384537000" expanded="true" signature="2760:2795" placeholder="select count..dz..." />
-            <marker date="1472384537000" expanded="true" signature="2956:2996" placeholder="select id fr..dz..." />
-            <marker date="1472384537000" expanded="true" signature="3179:3213" placeholder="update dz se..." />
-            <marker date="1472384537000" expanded="true" signature="3344:3475" placeholder="select d.id,..dz..." />
-            <marker date="1472384537000" expanded="true" signature="3344:3492" placeholder="select d.id,..dz..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/core/RequestData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="173" max-vertical-offset="540">
-          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding>
-            <element signature="e#857#858#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="618" max-vertical-offset="1200">
-          <caret line="59" column="44" selection-start-line="59" selection-start-column="44" selection-end-line="59" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/DzService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="353" max-vertical-offset="1050">
-          <caret line="55" column="29" selection-start-line="55" selection-start-column="29" selection-end-line="55" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.18041237" vertical-offset="0" max-vertical-offset="582">
+          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/vos/DZCursorVO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
+        <state vertical-scroll-proportion="0.05154639" vertical-offset="0" max-vertical-offset="582">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding>
-            <element signature="e#134#135#0" expanded="false" />
-            <element signature="e#161#162#0" expanded="false" />
-            <element signature="e#199#200#0" expanded="false" />
-            <element signature="e#231#232#0" expanded="false" />
-            <element signature="e#262#263#0" expanded="false" />
-            <element signature="e#291#292#0" expanded="false" />
-            <element signature="e#333#334#0" expanded="false" />
-            <element signature="e#369#370#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/vos/CommentVO.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/core/RequestData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
-          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-          <folding>
-            <element signature="e#581#582#0" expanded="true" />
-            <element signature="e#619#620#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.6443299" vertical-offset="0" max-vertical-offset="582">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/daos/CommentDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="756" max-vertical-offset="1425">
-          <caret line="90" column="44" selection-start-line="90" selection-start-column="44" selection-end-line="90" selection-end-column="44" />
+        <state vertical-scroll-proportion="0.4463972" vertical-offset="1081" max-vertical-offset="1650">
+          <caret line="101" column="59" selection-start-line="101" selection-start-column="59" selection-end-line="101" selection-end-column="59" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1472472909000" expanded="true" signature="751:852" placeholder="insert into ..." />
-            <marker date="1472472909000" expanded="true" signature="1584:1735" placeholder="select c.use..comment..." />
-            <marker date="1472472909000" expanded="true" signature="2326:2477" placeholder="select c.use..comment..." />
-            <marker date="1472472909000" expanded="true" signature="3171:3281" placeholder="insert into ..." />
+            <element signature="imports" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/vos/AdminUserVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15463917" vertical-offset="0" max-vertical-offset="582">
+          <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/controllers/HDDispatcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="311" max-vertical-offset="720">
+          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/vos/DZVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5134474" vertical-offset="15" max-vertical-offset="855">
+          <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/src.zip!/java/sql/Date.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33251834" vertical-offset="134" max-vertical-offset="4050">
+          <caret line="42" column="36" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/FavoriteService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5232274" vertical-offset="26" max-vertical-offset="435">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/controllers/APIController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21969697" vertical-offset="948" max-vertical-offset="1890">
+          <caret line="87" column="35" selection-start-line="87" selection-start-column="34" selection-end-line="87" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/ThumbService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.3202934" vertical-offset="431" max-vertical-offset="840">
+          <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/exceptions/ErrorCode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2567237" vertical-offset="0" max-vertical-offset="409">
+          <caret line="7" column="43" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="645" max-vertical-offset="1320">
+          <caret line="71" column="64" selection-start-line="71" selection-start-column="12" selection-end-line="71" selection-end-column="64" />
+          <folding>
+            <element signature="e#1089#1090#0" expanded="true" />
+            <element signature="e#1116#1117#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/daos/AdminUserDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="225">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/CommentService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71389645" vertical-offset="248" max-vertical-offset="690">
-          <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="795">
+          <caret line="42" column="29" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/DzService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1031" max-vertical-offset="1440">
+          <caret line="105" column="29" selection-start-line="105" selection-start-column="29" selection-end-line="105" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/daos/DZDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23550087" vertical-offset="1636" max-vertical-offset="2205">
+          <caret line="130" column="27" selection-start-line="130" selection-start-column="27" selection-end-line="130" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
+            <marker date="1474126949000" expanded="true" signature="663:815" placeholder="select d.id,..dz..." />
+            <marker date="1474126949000" expanded="true" signature="1921:2022" placeholder="insert into ..." />
+            <marker date="1474126949000" expanded="true" signature="2795:2830" placeholder="select count..dz..." />
+            <marker date="1474126949000" expanded="true" signature="2991:3031" placeholder="select id fr..dz..." />
+            <marker date="1474126949000" expanded="true" signature="3214:3248" placeholder="update dz se..." />
+            <marker date="1474126949000" expanded="true" signature="3379:3527" placeholder="select d.id,..dz..." />
+            <marker date="1474126949000" expanded="true" signature="4159:4236" placeholder="insert into ..." />
+            <marker date="1474126949000" expanded="true" signature="5309:5444" placeholder="select dz.id..dz..." />
           </folding>
         </state>
       </provider>

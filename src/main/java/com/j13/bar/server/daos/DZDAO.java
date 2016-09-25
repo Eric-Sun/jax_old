@@ -11,6 +11,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
+import java.util.Calendar;
 import java.util.List;
 
 @Repository
@@ -49,8 +50,8 @@ public class DZDAO {
     }
 
 
-    public long insert(final long userId, final String content, final long imgId, final String md5, final int fetchSource,
-                       final String sourceId) {
+    public long addMachine(final long userId, final String content, final long imgId, final String md5, final int fetchSource,
+                           final String sourceId) {
         final String sql = "insert into dz (user_id,content,img_id,createtime,md5,source,source_dz_id) values (?,?,?,now(),?,?,?)";
         KeyHolder holder = new GeneratedKeyHolder();
 
@@ -100,6 +101,54 @@ public class DZDAO {
                 DZVO.setContent(rs.getString(3));
                 DZVO.setUserName(rs.getString(4));
                 DZVO.setImg(rs.getString(5));
+                return DZVO;
+            }
+        });
+    }
+
+
+    public int add(final int userId, final String content, final String md5) {
+        final String sql = "insert into dz (user_id,content,img_id,createtime,md5) values (?,?,?,now(),?)";
+        KeyHolder holder = new GeneratedKeyHolder();
+
+        j.update(new PreparedStatementCreator() {
+            @Override
+            public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+                PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                pstmt.setLong(1, userId);
+                pstmt.setString(2, content);
+                pstmt.setString(3, md5);
+                return pstmt;
+            }
+        }, holder);
+
+        return holder.getKey().intValue();
+    }
+
+    public List<DZVO> listOneDayDZ(java.util.Date date, int size, int pageNum) {
+
+        Calendar cal1 = Calendar.getInstance();
+        cal1.setTime(date);
+        cal1.set(Calendar.HOUR_OF_DAY, 0);
+        cal1.set(Calendar.MINUTE, 0);
+        cal1.set(Calendar.SECOND, 0);
+
+        Calendar cal2 = Calendar.getInstance();
+        cal2.setTime(date);
+        cal2.set(Calendar.HOUR_OF_DAY, 23);
+        cal2.set(Calendar.MINUTE, 59);
+        cal2.set(Calendar.SECOND, 59);
+
+
+        String sql = "select dz.id,dz.content,dz.source,dz.createtime from dz where createtime between ? and ? order by id desc limit " + pageNum * size + "," + size;
+        return j.query(sql, new Object[]{cal1.getTime(), cal2.getTime()}, new RowMapper<DZVO>() {
+            @Override
+            public DZVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+                DZVO DZVO = new DZVO();
+                DZVO.setId(rs.getInt(1));
+                DZVO.setContent(rs.getString(2));
+                DZVO.setSource(rs.getInt(3));
+                DZVO.setCreatetime(rs.getDate(4));
                 return DZVO;
             }
         });

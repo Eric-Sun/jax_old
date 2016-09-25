@@ -3,10 +3,12 @@ package com.j13.bar.server.services;
 import com.j13.bar.server.core.HDConstants;
 import com.j13.bar.server.core.RequestData;
 import com.j13.bar.server.core.log.LOG;
+import com.j13.bar.server.daos.AdminUserDAO;
 import com.j13.bar.server.daos.UserDAO;
 import com.j13.bar.server.exceptions.CommonException;
 import com.j13.bar.server.exceptions.ErrorCode;
 import com.j13.bar.server.utils.MD5Util;
+import com.j13.bar.server.vos.AdminUserVO;
 import com.j13.bar.server.vos.UserVO;
 import org.apache.commons.fileupload.FileItem;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +28,16 @@ public class UserService {
     @Autowired
     UserDAO userDAO;
 
+
+    @Autowired
+    AdminUserDAO adminUserDAO;
     @Autowired
     ThumbService thumbService;
+
+
+    public AdminUserVO registerAdminUser(RequestData rd) {
+        return null;
+    }
 
     public UserVO login(RequestData rd) {
         String mobile = rd.getString("mobile");

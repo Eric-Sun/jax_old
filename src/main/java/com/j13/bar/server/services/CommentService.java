@@ -22,7 +22,7 @@ public class CommentService {
         int dzId = rd.getInteger("dzId");
         String sourceCommentId = rd.getString("sourceCommentId");
         int hot = rd.getInteger("hot");
-        int cId = commentDAO.add(dzId, userId, content, hot, sourceCommentId);
+        int cId = commentDAO.addMachine(dzId, userId, content, hot, sourceCommentId);
         return cId;
     }
 
@@ -33,8 +33,19 @@ public class CommentService {
         String sourceCommentId = rd.getString("sourceCommentId");
         int dzId = rd.getInteger("dzId");
         int hot = rd.getInteger("hot");
-        int cId = commentDAO.addTop(dzId, userId, content, hot, sourceCommentId);
+        int cId = commentDAO.addMachineTop(dzId, userId, content, hot, sourceCommentId);
         return cId;
+    }
+
+    public int add(RequestData rd) {
+
+        int userId = rd.getInteger("userId");
+        String content = rd.getString("content");
+        int dzId = rd.getInteger("dzId");
+
+        int cid = commentDAO.add(dzId, userId, content);
+
+        return cid;
     }
 
 }

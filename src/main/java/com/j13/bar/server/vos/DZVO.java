@@ -1,5 +1,7 @@
 package com.j13.bar.server.vos;
 
+import java.util.Date;
+
 public class DZVO {
     private long fid;
 
@@ -8,6 +10,24 @@ public class DZVO {
     private String content;
     private String userName;
     private String img;
+    private Date createtime;
+    private int source;
+
+    public int getSource() {
+        return source;
+    }
+
+    public void setSource(int source) {
+        this.source = source;
+    }
+
+    public Date getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
+    }
 
     public long getFid() {
         return fid;
