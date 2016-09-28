@@ -92,17 +92,29 @@ public class DzService {
         return dzDAO.add(userId, content, md5);
     }
 
-    public List<DZVO> listYesterdayPageNum(RequestData rd) {
+    public List<DZVO> listDZByDate(RequestData rd) {
         int pageNum = rd.getInteger("pageNum");
         int size = rd.getInteger("size");
         String dateString = rd.getString("date");
         Date date = null;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         try {
             date = sdf.parse(dateString);
         } catch (ParseException e) {
             throw new CommonException(ErrorCode.INPUT_PARAMETER_ERROR);
         }
         return dzDAO.listOneDayDZ(date, size, pageNum);
+    }
+
+    public int sizeDZByDate(RequestData rd) {
+        String dateString = rd.getString("date");
+        Date date = null;
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        try {
+            date = sdf.parse(dateString);
+        } catch (ParseException e) {
+            throw new CommonException(ErrorCode.INPUT_PARAMETER_ERROR);
+        }
+        return dzDAO.sizeOneDayDZ(date);
     }
 }

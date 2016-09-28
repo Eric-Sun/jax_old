@@ -153,4 +153,23 @@ public class DZDAO {
             }
         });
     }
+
+    public int sizeOneDayDZ(java.util.Date date) {
+
+        Calendar cal1 = Calendar.getInstance();
+        cal1.setTime(date);
+        cal1.set(Calendar.HOUR_OF_DAY, 0);
+        cal1.set(Calendar.MINUTE, 0);
+        cal1.set(Calendar.SECOND, 0);
+
+        Calendar cal2 = Calendar.getInstance();
+        cal2.setTime(date);
+        cal2.set(Calendar.HOUR_OF_DAY, 23);
+        cal2.set(Calendar.MINUTE, 59);
+        cal2.set(Calendar.SECOND, 59);
+
+
+        String sql = "select count(1) from dz where createtime between ? and ? ";
+        return j.queryForInt(sql, new Object[]{cal1.getTime(), cal2.getTime()});
+    }
 }
