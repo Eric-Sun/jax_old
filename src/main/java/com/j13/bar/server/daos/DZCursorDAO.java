@@ -37,7 +37,7 @@ public class DZCursorDAO {
 
     public long getCursor(String deviceId) {
         final String sql = "select dz_id from dz_cursor where device_id=?";
-        return jdbcTemplate.queryForLong(sql, new Object[]{deviceId});
+        return jdbcTemplate.queryForObject(sql, new Object[]{deviceId}, Long.class);
     }
 
     public void addCursor(String deviceId, long step) {

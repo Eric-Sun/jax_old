@@ -58,7 +58,7 @@ public class UserDAO {
     public boolean mobileExisted(String mobile) {
 
         String sql = "select count(1) from user where mobile=";
-        int count = j.queryForInt(sql, new Object[]{mobile});
+        int count = j.queryForObject(sql, new Object[]{mobile}, Integer.class);
 
         return count == 1 ? true : false;
 
@@ -67,7 +67,7 @@ public class UserDAO {
     public boolean nickNameExisted(String nickName) {
 
         String sql = "select count(1) from user where nick_name=?";
-        int count = j.queryForInt(sql, new Object[]{nickName});
+        int count = j.queryForObject(sql, new Object[]{nickName}, Integer.class);
 
         return count == 1 ? true : false;
     }

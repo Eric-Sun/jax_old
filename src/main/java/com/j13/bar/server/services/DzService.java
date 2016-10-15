@@ -1,12 +1,12 @@
 package com.j13.bar.server.services;
 
 import com.j13.bar.server.core.HDConstants;
-import com.j13.bar.server.core.RequestData;
 import com.j13.bar.server.daos.DZCursorDAO;
 import com.j13.bar.server.daos.DZDAO;
 import com.j13.bar.server.exceptions.CommonException;
 import com.j13.bar.server.exceptions.ErrorCode;
 import com.j13.bar.server.helper.MachineUserHolder;
+import com.j13.bar.server.poppy.anno.Action;
 import com.j13.bar.server.utils.MD5Util;
 import com.j13.bar.server.vos.DZVO;
 import org.slf4j.Logger;
@@ -20,7 +20,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-@Service("DzService")
+@Service
 public class DzService {
     private static Logger LOG = LoggerFactory.getLogger(DzService.class);
 
@@ -32,44 +32,40 @@ public class DzService {
     @Autowired
     DZCursorDAO dzCursorDAO;
 
-    public List<DZVO> list(RequestData request) {
-        String deviceId = request.getDeviceId();
+    @Action(name = "dz.list")
+    public List<DZVO> list(String deviceId) {
         long dzId = dzCursorDAO.getCursor(deviceId);
         List<DZVO> dzvoList = dzDAO.list10(dzId);
         dzCursorDAO.addCursor(deviceId, 10);
         return dzvoList;
     }
 
-    public DZVO getDZ(RequestData rd) {
-        int dzId = rd.getInteger("dzId");
+    @Action(name = "dz.getDZ")
+    public DZVO getDZ(Integer dzId) {
         DZVO dz = dzDAO.getMachineDZ(dzId);
         return dz;
     }
 
 
-    public long addFetchedDZ(RequestData request) {
-        String content = request.getString("content");
-        String md5 = request.getString("md5");
-        int fetchSource = request.getInteger("fetchSource");
-        String sourceId = request.getString("sourceDZId");
+    @Action(name = "dz.addFetchedDZ")
+    public Long addFetchedDZ(String content, String md5, Integer fetchSource, String sourceDZId) {
         int machineUser = machineUserHolder.randomOne();
-
         // 查看该内容是否有
         if (dzDAO.checkExist(md5)) {
             LOG.info("dz existed. md5 = " + md5);
-            return -1;
+            return new Long(-1);
         }
         long id = dzDAO.addMachine(machineUser, content, HDConstants.DEFAULT_IMG_ID, md5, fetchSource,
-                sourceId);
+                sourceDZId);
 
         LOG.info("dz insert .id = " + id);
-        return id;
+        return new Long(id);
     }
 
 
-    public int setMachineUserToDZ(RequestData requestData) {
-        int limitSize = requestData.getInteger("size");
-        List<Integer> list = dzDAO.getNoUserDZ(limitSize);
+    @Action(name = "dz.setMachineUserToDZ")
+    public int setMachineUserToDZ(Integer size) {
+        List<Integer> list = dzDAO.getNoUserDZ(size);
         for (Integer dzId : list) {
             int randomMachineUserId = machineUserHolder.randomOne();
             dzDAO.updateDZWithMachineUser(dzId, randomMachineUserId);
@@ -79,10 +75,8 @@ public class DzService {
         return list.size();
     }
 
-    public int add(RequestData rd) {
-        int userId = rd.getInteger("userId");
-        String content = rd.getString("content");
-
+    @Action(name = "dz.add")
+    public int add(Integer userId, String content) {
         String md5 = MD5Util.getMD5String(content);
 
         if (dzDAO.checkExist(md5)) {
@@ -92,29 +86,27 @@ public class DzService {
         return dzDAO.add(userId, content, md5);
     }
 
-    public List<DZVO> listDZByDate(RequestData rd) {
-        int pageNum = rd.getInteger("pageNum");
-        int size = rd.getInteger("size");
-        String dateString = rd.getString("date");
-        Date date = null;
+    @Action(name = "dz.listDZByDate")
+    public List<DZVO> listDZByDate(Integer pageNum, Integer size, String date) {
+        Date date2 = null;
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         try {
-            date = sdf.parse(dateString);
+            date2 = sdf.parse(date);
         } catch (ParseException e) {
             throw new CommonException(ErrorCode.INPUT_PARAMETER_ERROR);
         }
-        return dzDAO.listOneDayDZ(date, size, pageNum);
+        return dzDAO.listOneDayDZ(date2, size, pageNum);
     }
 
-    public int sizeDZByDate(RequestData rd) {
-        String dateString = rd.getString("date");
-        Date date = null;
+    @Action(name = "dz.sizeDZByDate")
+    public int sizeDZByDate(String date) {
+        Date date2 = null;
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         try {
-            date = sdf.parse(dateString);
+            date2 = sdf.parse(date);
         } catch (ParseException e) {
             throw new CommonException(ErrorCode.INPUT_PARAMETER_ERROR);
         }
-        return dzDAO.sizeOneDayDZ(date);
+        return dzDAO.sizeOneDayDZ(date2);
     }
 }

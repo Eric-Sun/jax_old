@@ -1,6 +1,5 @@
 package com.j13.bar.server.services;
 
-import com.j13.bar.server.core.RequestData;
 import com.j13.bar.server.core.config.PropertiesConfiguration;
 import com.j13.bar.server.exceptions.ServerException;
 import org.apache.commons.fileupload.FileItem;

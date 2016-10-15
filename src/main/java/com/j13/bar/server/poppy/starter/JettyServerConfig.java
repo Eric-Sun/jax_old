@@ -1,4 +1,4 @@
-package com.j13.bar.server.starter;
+package com.j13.bar.server.poppy.starter;
 
 
 public class JettyServerConfig {

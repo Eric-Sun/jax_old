@@ -1,7 +1,6 @@
 package com.j13.bar.server.services;
 
 import com.j13.bar.server.core.HDConstants;
-import com.j13.bar.server.core.RequestData;
 import com.j13.bar.server.core.log.LOG;
 import com.j13.bar.server.daos.AdminUserDAO;
 import com.j13.bar.server.daos.UserDAO;
@@ -35,13 +34,8 @@ public class UserService {
     ThumbService thumbService;
 
 
-    public AdminUserVO registerAdminUser(RequestData rd) {
-        return null;
-    }
 
-    public UserVO login(RequestData rd) {
-        String mobile = rd.getString("mobile");
-        String password = rd.getString("password");
+    public UserVO login(String mobile,String password) {
         String passwordAfterMD5 = MD5Util.getMD5String(password);
         UserVO vo = null;
         try {
@@ -54,17 +48,11 @@ public class UserService {
     }
 
     /**
-     * @param request
      * @return userId if registered successfully
      * -1 is mobile existed
      * -2 is nickName existed
      */
-    public long register(RequestData request) {
-        String mobile = request.getString("mobile");
-        String password = request.getString("password");
-        String nickName = request.getString("nickName");
-        int isMachine = request.getInteger("isMachine");
-
+    public long register(String mobile,String password,String nickName,int isMachine,FileItem file) {
 
         // check mobile exists
         if (isMachine != HDConstants.USER_IS_MACHINE && userDAO.mobileExisted(mobile)) {
@@ -79,7 +67,6 @@ public class UserService {
         }
 
         String passwordAfterMD5 = MD5Util.getMD5String(password);
-        FileItem file = request.getFile();
         String fileName = null;
         if (file != null) {
             fileName = thumbService.uploadThumb(file);

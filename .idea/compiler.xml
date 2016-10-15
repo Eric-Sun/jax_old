@@ -26,11 +26,8 @@
         <module name="jax" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="ba" target="1.6" />
-      <module name="che" target="1.6" />
+    <bytecodeTargetLevel target="1.8">
       <module name="jax" target="1.6" />
-      <module name="server" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>

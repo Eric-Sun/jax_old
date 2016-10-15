@@ -1,16 +1,15 @@
-package com.j13.bar.server.core;
+package com.j13.bar.server.poppy;
 
 import com.j13.bar.server.core.config.PropertiesConfiguration;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-public class JaxListener implements ServletContextListener {
+public class PoppyListener implements ServletContextListener {
+
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-
         PropertiesConfiguration.getInstance().addResource("/jax.properties");
-
     }
 
     @Override

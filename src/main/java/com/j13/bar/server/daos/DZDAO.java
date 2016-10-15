@@ -74,7 +74,7 @@ public class DZDAO {
 
     public boolean checkExist(String md5) {
         String sql = "select count(1) from dz where md5=?";
-        return j.queryForInt(sql, new Object[]{md5}) == 0 ? false : true;
+        return j.queryForObject(sql, new Object[]{md5}, Integer.class) == 0 ? false : true;
     }
 
 
@@ -170,6 +170,6 @@ public class DZDAO {
 
 
         String sql = "select count(1) from dz where createtime between ? and ? ";
-        return j.queryForInt(sql, new Object[]{cal1.getTime(), cal2.getTime()});
+        return j.queryForObject(sql, new Object[]{cal1.getTime(), cal2.getTime()}, Integer.class);
     }
 }

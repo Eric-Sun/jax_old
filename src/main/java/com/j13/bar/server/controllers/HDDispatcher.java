@@ -36,15 +36,15 @@ public class HDDispatcher implements ApplicationContextAware {
         sb.append(mod.substring(1));
         sb.append(SUFFIX);
 
-        RequestData requestData = JSON.parseObject(args, RequestData.class);
-        Object beanObj = applicationContext.getBean(sb.toString());
-        Class clazz = beanObj.getClass();
-        requestData.setUid(uid);
-        requestData.setFile(file);
-        requestData.setDeviceId(deviceId);
-        Method m = clazz.getMethod(act, new Class[]{RequestData.class});
+//        RequestData requestData = JSON.parseObject(args, RequestData.class);
+//        Object beanObj = applicationContext.getBean(sb.toString());
+//        Class clazz = beanObj.getClass();
+//        requestData.setUid(uid);
+//        requestData.setFile(file);
+//        requestData.setDeviceId(deviceId);
+//        Method m = clazz.getMethod(act, new Class[]{RequestData.class});
 
-        responseData = m.invoke(beanObj, new Object[]{requestData});
+//        responseData = m.invoke(beanObj, new Object[]{requestData});
         return responseData;
 
     }

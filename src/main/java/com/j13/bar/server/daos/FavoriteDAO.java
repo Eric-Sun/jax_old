@@ -39,7 +39,7 @@ public class FavoriteDAO {
 
     public int size(int userId) {
         String sql = "select count(1) from favorite where user_id=?";
-        return j.queryForInt(sql, new Object[]{userId});
+        return j.queryForObject(sql, new Object[]{userId}, Integer.class);
     }
 
 

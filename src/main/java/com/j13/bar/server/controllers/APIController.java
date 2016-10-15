@@ -20,7 +20,6 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-@Controller
 public class APIController {
     private static Logger LOG = LoggerFactory.getLogger(APIController.class);
 
@@ -28,8 +27,6 @@ public class APIController {
     HDDispatcher hdDispatcher;
 
 
-    @RequestMapping("/")
-    @ResponseBody
     public String dispatch(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         FileItem file = null;
