@@ -2,6 +2,9 @@ package com.j13.bar.server.poppy.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Maps;
+import com.j13.bar.server.exceptions.CommonException;
+import com.j13.bar.server.exceptions.ErrorCode;
+import com.j13.bar.server.poppy.ErrorResponse;
 import com.j13.bar.server.poppy.RequestData;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -40,8 +43,13 @@ public class MainController {
         RequestData requestData = parseRequest(request);
 
         LOG.info("request : {}", JSON.toJSONString(requestData.getData()));
-
-        Object obj = dispatcher.dispatch(act, requestData);
+        Object obj = null;
+        try {
+            obj = dispatcher.dispatch(act, requestData);
+        } catch (Exception e) {
+            LOG.error(e.getMessage());
+            obj = new ErrorResponse(ErrorCode.System.SYSTEM_ERROR);
+        }
         String json = JSON.toJSONString(obj);
         LOG.info("response : {}", json);
         response.getWriter().write(json);

@@ -5,12 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -29,8 +31,16 @@ public class UserDAO {
 
 
     public UserVO loginByMobile(String mobile, String password) {
-        final String sql = "select id,nick_name,img from user where mobile=? and password=?";
-        UserVO vo = j.queryForObject(sql, new Object[]{mobile, password}, new BeanPropertyRowMapper<UserVO>(UserVO.class));
+        final String sql = "select id,nick_name from user where mobile=? and password=?";
+        UserVO vo = j.queryForObject(sql, new Object[]{mobile, password}, new RowMapper<UserVO>() {
+            @Override
+            public UserVO mapRow(ResultSet resultSet, int i) throws SQLException {
+                UserVO vo = new UserVO();
+                vo.setUserId(resultSet.getInt(1));
+                vo.setUserName(resultSet.getString(2));
+                return vo;
+            }
+        });
         return vo;
 
     }
@@ -57,7 +67,7 @@ public class UserDAO {
 
     public boolean mobileExisted(String mobile) {
 
-        String sql = "select count(1) from user where mobile=";
+        String sql = "select count(1) from user where mobile=?";
         int count = j.queryForObject(sql, new Object[]{mobile}, Integer.class);
 
         return count == 1 ? true : false;

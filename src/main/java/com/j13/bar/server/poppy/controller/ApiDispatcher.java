@@ -2,8 +2,9 @@ package com.j13.bar.server.poppy.controller;
 
 import com.google.common.collect.Lists;
 import com.j13.bar.server.core.log.LOG;
+import com.j13.bar.server.exceptions.CommonException;
+import com.j13.bar.server.exceptions.ErrorCode;
 import com.j13.bar.server.poppy.ErrorResponse;
-import com.j13.bar.server.poppy.PoppyResponseCode;
 import com.j13.bar.server.poppy.RequestData;
 import com.j13.bar.server.poppy.core.ActionMethodInfo;
 import com.j13.bar.server.poppy.core.ActionServiceLoader;
@@ -33,26 +34,30 @@ public class ApiDispatcher {
         Map<String, ActionMethodInfo> maps = actionServiceLoader.getActionInfoMap();
         ActionMethodInfo ami = maps.get(act);
         if (ami == null) {
-            return new ErrorResponse(PoppyResponseCode.NOT_FOUND_ACTION);
+            return new ErrorResponse(ErrorCode.System.NOT_FOUND_ACTION);
         }
 
         Method actionMethod = ami.getActionMethod();
-        LOG.info("Founded. method = {}", actionMethod.getName());
+        LOG.debug("Founded. method = {}", actionMethod.getName());
         Object beanObject = ami.getServiceObject();
         List<ParameterInfo> parameterInfoList = ami.getParamList();
         List<Object> inputParams = Lists.newLinkedList();
 
         for (ParameterInfo pi : parameterInfoList) {
-            LOG.info(" type = {}, name = {}", pi.getType(), pi.getName());
+            LOG.debug(" type = {}, name = {}", pi.getType(), pi.getName());
             inputParams.add(convertByType(pi.getType(), requestData, pi.getName()));
         }
 
         try {
             return actionMethod.invoke(beanObject, inputParams.toArray());
         } catch (IllegalAccessException e) {
-            return new ErrorResponse(PoppyResponseCode.ACTION_REFLECT_ERROR);
+            return new ErrorResponse(ErrorCode.System.ACTION_REFLECT_ERROR);
         } catch (InvocationTargetException e) {
-            return new ErrorResponse(PoppyResponseCode.ACTION_REFLECT_ERROR);
+            LOG.error("", e.getTargetException());
+            if (e.getTargetException().getClass().equals(CommonException.class)) {
+                return new ErrorResponse(((CommonException) e.getTargetException()).getErrorCode());
+            }
+            return new ErrorResponse(ErrorCode.System.ACTION_REFLECT_ERROR);
         }
     }
 
@@ -60,19 +65,36 @@ public class ApiDispatcher {
     private Object convertByType(Type type, RequestData requestData, String name) {
 
         if (type.equals(FileItem.class)) {
-            return requestData.getFileItem();
+            if (requestData.getFileItem() == null) {
+                return null;
+            } else {
+                return requestData.getFileItem();
+            }
         }
         Object value = requestData.getData().get(name);
-        if (type.equals(String.class)) {
-            return value;
-        } else if (type.equals(Integer.class)) {
-            return new Integer(value.toString()).intValue();
-        } else if (type.equals(Long.class)) {
-            return new Long(value.toString()).longValue();
-        } else if (type.equals(FileItem.class)) {
-            return (FileItem) value;
-        } else
-            return null;
+        if (value == null) {
+            if (type.equals(String.class)) {
+                return "";
+            } else if (type.equals(Integer.class)) {
+                return 0;
+            } else if (type.equals(Long.class)) {
+                return 0;
+            } else if (type.equals(FileItem.class)) {
+                return null;
+            } else
+                return null;
+        } else {
+            if (type.equals(String.class)) {
+                return value;
+            } else if (type.equals(Integer.class)) {
+                return new Integer(value.toString()).intValue();
+            } else if (type.equals(Long.class)) {
+                return new Long(value.toString()).longValue();
+            } else if (type.equals(FileItem.class)) {
+                return (FileItem) value;
+            } else
+                return null;
+        }
     }
 
 }

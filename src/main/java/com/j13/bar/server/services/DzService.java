@@ -93,7 +93,7 @@ public class DzService {
         try {
             date2 = sdf.parse(date);
         } catch (ParseException e) {
-            throw new CommonException(ErrorCode.INPUT_PARAMETER_ERROR);
+            throw new CommonException(ErrorCode.Common.INPUT_PARAMETER_ERROR);
         }
         return dzDAO.listOneDayDZ(date2, size, pageNum);
     }
@@ -105,7 +105,7 @@ public class DzService {
         try {
             date2 = sdf.parse(date);
         } catch (ParseException e) {
-            throw new CommonException(ErrorCode.INPUT_PARAMETER_ERROR);
+            throw new CommonException(ErrorCode.Common.INPUT_PARAMETER_ERROR);
         }
         return dzDAO.sizeOneDayDZ(date2);
     }
