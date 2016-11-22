@@ -1,13 +1,16 @@
 package com.j13.bar.server.services;
 
 import com.j13.bar.server.core.HDConstants;
+import com.j13.bar.server.daos.CommentDAO;
 import com.j13.bar.server.daos.DZCursorDAO;
 import com.j13.bar.server.daos.DZDAO;
 import com.j13.bar.server.exceptions.CommonException;
 import com.j13.bar.server.exceptions.ErrorCode;
 import com.j13.bar.server.helper.MachineUserHolder;
 import com.j13.bar.server.poppy.anno.Action;
+import com.j13.bar.server.poppy.anno.NeedTicket;
 import com.j13.bar.server.utils.MD5Util;
+import com.j13.bar.server.vos.CommentVO;
 import com.j13.bar.server.vos.DZVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +35,10 @@ public class DzService {
     @Autowired
     DZCursorDAO dzCursorDAO;
 
-    @Action(name = "dz.list")
+    @Autowired
+    CommentDAO commentDAO;
+
+    @Action("dz.list")
     public List<DZVO> list(String deviceId) {
         long dzId = dzCursorDAO.getCursor(deviceId);
         List<DZVO> dzvoList = dzDAO.list10(dzId);
@@ -40,14 +46,19 @@ public class DzService {
         return dzvoList;
     }
 
-    @Action(name = "dz.getDZ")
+    @Action("dz.get")
     public DZVO getDZ(Integer dzId) {
-        DZVO dz = dzDAO.getMachineDZ(dzId);
+        DZVO dz = dzDAO.get(dzId);
+        List<CommentVO> topList = commentDAO.listTop(dzId, 0, 10);
+        int commonSize = 10 - topList.size();
+        List<CommentVO> commonList = commentDAO.listCommon(dzId, 0, commonSize);
+        dz.setTopComments(topList);
+        dz.setCommonComments(commonList);
         return dz;
     }
 
 
-    @Action(name = "dz.addFetchedDZ")
+    @Action("dz.addFetchedDZ")
     public Long addFetchedDZ(String content, String md5, Integer fetchSource, String sourceDZId) {
         int machineUser = machineUserHolder.randomOne();
         // 查看该内容是否有
@@ -63,7 +74,7 @@ public class DzService {
     }
 
 
-    @Action(name = "dz.setMachineUserToDZ")
+    @Action("dz.setMachineUserToDZ")
     public int setMachineUserToDZ(Integer size) {
         List<Integer> list = dzDAO.getNoUserDZ(size);
         for (Integer dzId : list) {
@@ -75,7 +86,7 @@ public class DzService {
         return list.size();
     }
 
-    @Action(name = "dz.add")
+    @Action("dz.add")
     public int add(Integer userId, String content) {
         String md5 = MD5Util.getMD5String(content);
 
@@ -86,7 +97,7 @@ public class DzService {
         return dzDAO.add(userId, content, md5);
     }
 
-    @Action(name = "dz.listDZByDate")
+    @Action("dz.listDZByDate")
     public List<DZVO> listDZByDate(Integer pageNum, Integer size, String date) {
         Date date2 = null;
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
@@ -98,7 +109,7 @@ public class DzService {
         return dzDAO.listOneDayDZ(date2, size, pageNum);
     }
 
-    @Action(name = "dz.sizeDZByDate")
+    @Action("dz.sizeDZByDate")
     public int sizeDZByDate(String date) {
         Date date2 = null;
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
@@ -108,5 +119,13 @@ public class DzService {
             throw new CommonException(ErrorCode.Common.INPUT_PARAMETER_ERROR);
         }
         return dzDAO.sizeOneDayDZ(date2);
+    }
+
+
+    @Action("dz.praise")
+    @NeedTicket
+    public int praise(Integer userId, Integer dzId) {
+        dzDAO.praise(userId, dzId);
+        return 0;
     }
 }

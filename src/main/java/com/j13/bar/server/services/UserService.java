@@ -36,7 +36,7 @@ public class UserService {
     ThumbService thumbService;
 
 
-    @Action(name = "user.login")
+    @Action("user.login")
     public UserVO login(String mobile, String password) {
         String passwordAfterMD5 = MD5Util.getMD5String(password);
         UserVO vo = null;
@@ -57,7 +57,7 @@ public class UserService {
      * -1 is mobile existed
      * -2 is nickName existed
      */
-    @Action(name = "user.register")
+    @Action("user.register")
     public long register(String mobile, String password, String nickName, Integer isMachine, FileItem file) {
 
         // check mobile exists

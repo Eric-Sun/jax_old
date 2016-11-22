@@ -89,7 +89,7 @@ public class DZDAO {
         j.update(sql, new Object[]{machineUserId, dzId});
     }
 
-    public DZVO getMachineDZ(int dzId) {
+    public DZVO get(int dzId) {
         String sql = "select d.id,d.user_id,d.content,u.nick_name,u.img from dz d left join user u on u.id=d.user_id  where " +
                 "d.id = ? and is_machine=1";
         return j.queryForObject(sql, new Object[]{dzId}, new RowMapper<DZVO>() {
@@ -171,5 +171,10 @@ public class DZDAO {
 
         String sql = "select count(1) from dz where createtime between ? and ? ";
         return j.queryForObject(sql, new Object[]{cal1.getTime(), cal2.getTime()}, Integer.class);
+    }
+
+    public void praise(Integer userId, Integer dzId) {
+        String sql = "update dz set praise=praise+1 where id=?";
+        j.update(sql, new Object[]{dzId});
     }
 }

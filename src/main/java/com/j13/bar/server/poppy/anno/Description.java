@@ -3,9 +3,9 @@ package com.j13.bar.server.poppy.anno;
 import java.lang.annotation.*;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
+@Target({ElementType.METHOD, ElementType.PARAMETER})
 @Documented
-public @interface Action {
+public @interface Description {
 
     public String value() default "";
 

@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.j13.bar.server.core.log.LOG;
 import com.j13.bar.server.exceptions.CommonException;
 import com.j13.bar.server.exceptions.ErrorCode;
+import com.j13.bar.server.helper.TicketManager;
 import com.j13.bar.server.poppy.ErrorResponse;
 import com.j13.bar.server.poppy.RequestData;
 import com.j13.bar.server.poppy.core.ActionMethodInfo;
@@ -28,6 +29,9 @@ public class ApiDispatcher {
     @Autowired
     ActionServiceLoader actionServiceLoader;
 
+    @Autowired
+    TicketManager ticketManager;
+
 
     public Object dispatch(String act, RequestData requestData) {
 
@@ -47,6 +51,21 @@ public class ApiDispatcher {
             LOG.debug(" type = {}, name = {}", pi.getType(), pi.getName());
             inputParams.add(convertByType(pi.getType(), requestData, pi.getName()));
         }
+
+        // need to check t or not
+        boolean isNeedTicket = ami.isNeedTicket();
+        if (isNeedTicket) {
+            String t = requestData.getData().get("t");
+            if (t == null)
+                return new ErrorResponse(ErrorCode.Common.NEED_T);
+
+            int userId = ticketManager.checkTicket(t);
+            if (userId == 0)
+                return new ErrorResponse(ErrorCode.User.NEED_LOGIN);
+
+            requestData.getData().put("userId", userId + "");
+        }
+
 
         try {
             return actionMethod.invoke(beanObject, inputParams.toArray());

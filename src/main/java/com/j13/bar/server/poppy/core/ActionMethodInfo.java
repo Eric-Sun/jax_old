@@ -9,6 +9,16 @@ public class ActionMethodInfo {
     private Object serviceObject;
     private Method actionMethod;
     private String actionName;
+    private boolean needTicket = false;
+
+    public boolean isNeedTicket() {
+        return needTicket;
+    }
+
+    public void setNeedTicket(boolean needTicket) {
+        this.needTicket = needTicket;
+    }
+
     private List<ParameterInfo> paramList = Lists.newLinkedList();
 
     public List<ParameterInfo> getParamList() {

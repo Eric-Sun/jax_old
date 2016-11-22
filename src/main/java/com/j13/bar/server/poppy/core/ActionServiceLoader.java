@@ -2,6 +2,7 @@ package com.j13.bar.server.poppy.core;
 
 import com.google.common.collect.Maps;
 import com.j13.bar.server.poppy.anno.Action;
+import com.j13.bar.server.poppy.anno.NeedTicket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -46,12 +47,17 @@ public class ActionServiceLoader implements ApplicationContextAware {
                 LOG.info("Loading service . name = {}", serviceName);
                 for (int i = 0; i < methods2.length; i++) {
                     Method m2 = methods2[i];
+                    ActionMethodInfo ami = new ActionMethodInfo();
 
                     Action anno = (Action) m2.getAnnotation(Action.class);
-                    if (anno != null) {
-                        String name = anno.name();
+                    NeedTicket ticketAnno = (NeedTicket) m2.getAnnotation(NeedTicket.class);
+                    if (ticketAnno != null) {
+                        ami.isNeedTicket();
+                    }
 
-                        ActionMethodInfo ami = new ActionMethodInfo();
+                    if (anno != null) {
+                        String name = anno.value();
+
                         ami.setActionMethod(m2);
                         ami.setActionName(name);
                         ami.setServiceObject(beanObject);

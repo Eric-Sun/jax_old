@@ -1,6 +1,7 @@
 package com.j13.bar.server.vos;
 
 import java.util.Date;
+import java.util.List;
 
 public class DZVO {
     private long fid;
@@ -12,6 +13,24 @@ public class DZVO {
     private String img;
     private Date createtime;
     private int source;
+    private List<CommentVO> topComments;
+    private List<CommentVO> commonComments;
+
+    public List<CommentVO> getTopComments() {
+        return topComments;
+    }
+
+    public void setTopComments(List<CommentVO> topComments) {
+        this.topComments = topComments;
+    }
+
+    public List<CommentVO> getCommonComments() {
+        return commonComments;
+    }
+
+    public void setCommonComments(List<CommentVO> commonComments) {
+        this.commonComments = commonComments;
+    }
 
     public int getSource() {
         return source;

@@ -4,12 +4,15 @@ public class ErrorCode {
 
     public static class Common {
         public static int INPUT_PARAMETER_ERROR = 4;
+        public static int NEED_T = 5;
     }
 
     public static class User {
         public static int PASSWORD_NOT_RIGHT = 1001;
         public static int MOBILE_EXISTED = 1002;
         public static int NICKNAME_EXISTED = 1003;
+        public static int NEED_LOGIN = 1004;
+
     }
 
     public static class System {

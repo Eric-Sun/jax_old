@@ -1,6 +1,10 @@
 package com.j13.bar.server.vos;
 
-public class CommentVO {
+import com.google.common.collect.Lists;
+
+import java.util.List;
+
+public class CommentResp {
     private int cid;
     private String content;
     private long createTime;
@@ -10,15 +14,7 @@ public class CommentVO {
     private int praiseCount;
     private int shareCount;
     private int commentCount;
-    private int replyCid;
-
-    public int getReplyCid() {
-        return replyCid;
-    }
-
-    public void setReplyCid(int replyCid) {
-        this.replyCid = replyCid;
-    }
+    private List<CommentReplyResp> replys = Lists.newLinkedList();
 
     public int getCid() {
         return cid;
@@ -90,5 +86,13 @@ public class CommentVO {
 
     public void setCommentCount(int commentCount) {
         this.commentCount = commentCount;
+    }
+
+    public List<CommentReplyResp> getReplys() {
+        return replys;
+    }
+
+    public void setReplys(List<CommentReplyResp> replys) {
+        this.replys = replys;
     }
 }
