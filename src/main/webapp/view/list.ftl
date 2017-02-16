@@ -9,22 +9,42 @@
 </head>
 <body>
 
-<#list list as a>
-<div class="row">
-    <div class="col-md-2">
-        <div class="row">
-            <div class="col-md-6">${a.id}</div>
-            <a href="#">Inbox <span class="badge">42</span></a>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">方法列表</h3>
+                </div>
+
+                <!-- /.box-header -->
+                <div class="box-body table-responsive">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>接口</th>
+                            <th>描述</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <#list methodList as method>
+                        <tr>
+                            <td><a href="/doc?method=${method.name}">${method.name}</a></td>
+                            <td>${method.desc}</td>
+                        </tr>
+                        </#list>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+
+            </div>
+            <!-- /.box -->
         </div>
     </div>
-    <div class="col-md-10"> ${a.content}</div>
-</div>
-</#list>
 
-<form action="/message/send">
-    <input type="hidden" name="uid" value="5">
-    内容：<input type="text" name="content">
-    <input type="submit" value="submit">
-</form>
+</section>
+
 </body>
 </html>

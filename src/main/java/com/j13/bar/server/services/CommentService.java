@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-@Service
 public class CommentService {
 
 
@@ -40,14 +39,14 @@ public class CommentService {
     TicketManager ticketManager;
 
 
-    @Action("comment.addMachine")
+    @Action(name = "comment.addMachine")
     public int addMachine(String content, Integer dzId, Integer hot, String sourceCommentId) {
         int userId = machineUserHolder.randomOne();
         int cId = commentDAO.addMachine(dzId, userId, content, hot, sourceCommentId);
         return cId;
     }
 
-    @Action("comment.addMachineTop")
+    @Action(name = "comment.addMachineTop")
     public int addMachineTop(String content, String sourceCommentId,
                              Integer dzId, Integer hot) {
         int userId = machineUserHolder.randomOne();
@@ -55,7 +54,7 @@ public class CommentService {
         return cId;
     }
 
-    @Action("comment.add")
+    @Action(name = "comment.add")
     @Description("添加段子的评论")
     @NeedTicket
     public CommentAddResp add(@Description("评论的内容") String content,
@@ -80,7 +79,7 @@ public class CommentService {
     }
 
 
-    @Action("comment.count")
+    @Action(name="comment.count")
     @NeedTicket
     public CommonResultResp count(Integer userId, Integer cid, Integer type) {
         CommonResultResp resp = new CommonResultResp();
@@ -93,7 +92,7 @@ public class CommentService {
     }
 
 
-    @Action("comment.delete")
+    @Action(name="comment.delete")
     @Description("删除评论")
     @NeedTicket
     public CommonResultResp delete(Integer userId, Integer cid) {
@@ -103,7 +102,7 @@ public class CommentService {
         return resp;
     }
 
-    @Action("comment.list")
+    @Action(name="comment.list")
     @NeedTicket
     @Description("查询段子下的所有的评论")
     public CommentListResp list(

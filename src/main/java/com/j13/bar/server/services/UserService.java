@@ -23,7 +23,6 @@ import org.springframework.stereotype.Service;
  * Time: 下午4:21
  * To change this template use File | Settings | File Templates.
  */
-@Service("UserService")
 public class UserService {
 
     @Autowired
@@ -36,7 +35,7 @@ public class UserService {
     ThumbService thumbService;
 
 
-    @Action("user.login")
+    @Action(name="user.login")
     public UserVO login(String mobile, String password) {
         String passwordAfterMD5 = MD5Util.getMD5String(password);
         UserVO vo = null;
@@ -57,7 +56,7 @@ public class UserService {
      * -1 is mobile existed
      * -2 is nickName existed
      */
-    @Action("user.register")
+    @Action(name="user.register")
     public long register(String mobile, String password, String nickName, Integer isMachine, FileItem file) {
 
         // check mobile exists

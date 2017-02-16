@@ -1,8 +1,12 @@
 package com.j13.bar.server.poppy.core;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.j13.bar.server.poppy.anno.Action;
+import com.j13.bar.server.poppy.anno.Description;
 import com.j13.bar.server.poppy.anno.NeedTicket;
+import com.j13.bar.server.poppy.anno.Parameter;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -10,15 +14,23 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.DefaultParameterNameDiscoverer;
 import org.springframework.core.ParameterNameDiscoverer;
+import org.springframework.core.annotation.AnnotationUtils;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.PostConstruct;
+import java.beans.PropertyDescriptor;
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.List;
 import java.util.Map;
 
 @Service
 public class ActionServiceLoader implements ApplicationContextAware {
+
+    private static String FACADE = "Facade";
 
     private static Logger LOG = LoggerFactory.getLogger(ActionServiceLoader.class);
 
@@ -38,50 +50,75 @@ public class ActionServiceLoader implements ApplicationContextAware {
     @PostConstruct
     public void loadActionInfos() {
         try {
-            LOG.info("start loading actions.");
-            Map<String, Object> beansMap = applicationContext.getBeansWithAnnotation(Service.class);
-            for (String serviceName : beansMap.keySet()) {
-                Class clazz2 = beansMap.get(serviceName).getClass();
-                Object beanObject = beansMap.get(serviceName);
-                Method[] methods2 = clazz2.getDeclaredMethods();
-                LOG.info("Loading service . name = {}", serviceName);
-                for (int i = 0; i < methods2.length; i++) {
-                    Method m2 = methods2[i];
+            LOG.info("start loading components.");
+
+            Map<String, Object> beansMap = applicationContext.getBeansWithAnnotation(Component.class);
+            for (String componentName : beansMap.keySet()) {
+
+                if (componentName.indexOf(FACADE) < 0)
+                    continue;
+                Class componentClazz = beansMap.get(componentName).getClass();
+                Object componentObject = beansMap.get(componentName);
+                Method[] componentMethods = componentClazz.getDeclaredMethods();
+                LOG.info("Loading component . name = {}", componentName);
+                for (int mIndex = 0; mIndex < componentMethods.length; mIndex++) {
+                    Method actionMethod = componentMethods[mIndex];
                     ActionMethodInfo ami = new ActionMethodInfo();
 
-                    Action anno = (Action) m2.getAnnotation(Action.class);
-                    NeedTicket ticketAnno = (NeedTicket) m2.getAnnotation(NeedTicket.class);
+                    // parse all anno(eg. Action NeedTicket)
+                    Action actionAnno = (Action) actionMethod.getAnnotation(Action.class);
+                    NeedTicket ticketAnno = (NeedTicket) actionMethod.getAnnotation(NeedTicket.class);
+
                     if (ticketAnno != null) {
                         ami.isNeedTicket();
                     }
 
-                    if (anno != null) {
-                        String name = anno.value();
+                    if (actionAnno != null) {
+                        String name = actionAnno.name();
+                        String desc = actionAnno.desc();
 
-                        ami.setActionMethod(m2);
+                        ami.setActionMethod(actionMethod);
                         ami.setActionName(name);
-                        ami.setServiceObject(beanObject);
+                        ami.setDesc(desc);
+                        ami.setServiceObject(componentObject);
+
+                        // parse parameters
                         ParameterNameDiscoverer pnd = new DefaultParameterNameDiscoverer();
-                        String[] parameterNames = pnd.getParameterNames(m2);
-                        Class[] types = m2.getParameterTypes();
+                        String[] parameterNames = pnd.getParameterNames(actionMethod);
+                        Class[] types = actionMethod.getParameterTypes();
 
                         String[] paramNames = new String[parameterNames.length];
                         LOG.info("Loading method . action = {},name = {}, params size = {}",
-                                new Object[]{name, m2.getName(), paramNames.length});
-                        for (int i2 = 0; i2 < paramNames.length; i2++) {
-                            String pn = parameterNames[i2];
+                                new Object[]{name, actionMethod.getName(), paramNames.length});
+
+                        for (int pIndex = 0; pIndex < paramNames.length; pIndex++) {
+                            String pn = parameterNames[pIndex];
+                            Class pClazz = types[pIndex];
                             ParameterInfo pi = new ParameterInfo();
                             pi.setName(pn);
-                            pi.setType(types[i2]);
+                            pi.setClazz(types[pIndex]);
                             ami.getParamList().add(pi);
-                            LOG.info("loadding params. name={}, type={}, pos={}", new Object[]{pn, types[i2], i2});
+                            if (!pClazz.equals(CommandContext.class)) {
+                                List<ParameterInfo> pList = parse(pClazz);
+                                ami.setInnerParamList(pList);
+                            }
+
+                            LOG.info("loadding params. name={}, type={}, pos={}", new Object[]{pn, types[pIndex], pIndex});
                         }
 
                         if (actionInfoMap.get(name) != null) {
                             LOG.info("action has been existed. name={}", name);
                         }
                         actionInfoMap.put(name, ami);
+
+
                     }
+
+                    // parse response
+                    Class responseClass = actionMethod.getReturnType();
+                    ami.setResponse(responseClass);
+                    List<ParameterInfo> responseParamList = parse(responseClass);
+                    ami.setResponseParamList(responseParamList);
                 }
 
             }
@@ -91,6 +128,45 @@ public class ActionServiceLoader implements ApplicationContextAware {
 
     }
 
+
+    private List<ParameterInfo> parse(Class clazz) throws NoSuchFieldException {
+        List<ParameterInfo> list = Lists.newLinkedList();
+        PropertyDescriptor[] pds = PropertyUtils.getPropertyDescriptors(clazz);
+        for (int pdsIndex = 0; pdsIndex < pds.length - 1; pdsIndex++) {
+            ParameterInfo innerPi = new ParameterInfo();
+            PropertyDescriptor pd = pds[pdsIndex];
+            innerPi.setClazz(pd.getPropertyType());
+
+            Parameter pAnno = clazz.getDeclaredField(pd.getName()).getAnnotation(Parameter.class);
+            if (pAnno == null)
+                continue;
+            innerPi.setDesc(pAnno.desc());
+            if (StringUtils.hasText(pAnno.name())) {
+                innerPi.setName(pAnno.name());
+            } else {
+                innerPi.setName(pd.getName());
+            }
+            list.add(innerPi);
+
+            if (!innerPi.getClazz().isPrimitive() &&
+                    innerPi.getClazz().getPackage().getName().indexOf("java") < 0) {
+                List<ParameterInfo> innerList = parse(innerPi.getClazz());
+                innerPi.setInnerList(innerList);
+            }
+
+            // if list.
+            if (innerPi.getClazz().equals(List.class)) {
+
+                Type genType = clazz.getDeclaredField(innerPi.getName()).getGenericType();
+                Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
+                Class classInList = (Class) params[0];
+                List<ParameterInfo> innerList = parse(classInList);
+                innerPi.setInnerList(innerList);
+            }
+
+        }
+        return list;
+    }
 
 }
 

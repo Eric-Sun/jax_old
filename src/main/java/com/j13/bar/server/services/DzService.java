@@ -23,7 +23,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-@Service
 public class DzService {
     private static Logger LOG = LoggerFactory.getLogger(DzService.class);
 
@@ -38,7 +37,7 @@ public class DzService {
     @Autowired
     CommentDAO commentDAO;
 
-    @Action("dz.list")
+    @Action(name="dz.list")
     public List<DZVO> list(String deviceId) {
         long dzId = dzCursorDAO.getCursor(deviceId);
         List<DZVO> dzvoList = dzDAO.list10(dzId);
@@ -46,7 +45,7 @@ public class DzService {
         return dzvoList;
     }
 
-    @Action("dz.get")
+    @Action(name="dz.get")
     public DZVO getDZ(Integer dzId) {
         DZVO dz = dzDAO.get(dzId);
         List<CommentVO> topList = commentDAO.listTop(dzId, 0, 10);
@@ -58,7 +57,7 @@ public class DzService {
     }
 
 
-    @Action("dz.addFetchedDZ")
+    @Action(name="dz.addFetchedDZ")
     public Long addFetchedDZ(String content, String md5, Integer fetchSource, String sourceDZId) {
         int machineUser = machineUserHolder.randomOne();
         // 查看该内容是否有
@@ -74,7 +73,7 @@ public class DzService {
     }
 
 
-    @Action("dz.setMachineUserToDZ")
+    @Action(name="dz.setMachineUserToDZ")
     public int setMachineUserToDZ(Integer size) {
         List<Integer> list = dzDAO.getNoUserDZ(size);
         for (Integer dzId : list) {
@@ -86,7 +85,7 @@ public class DzService {
         return list.size();
     }
 
-    @Action("dz.add")
+    @Action(name="dz.add")
     public int add(Integer userId, String content) {
         String md5 = MD5Util.getMD5String(content);
 
@@ -97,7 +96,7 @@ public class DzService {
         return dzDAO.add(userId, content, md5);
     }
 
-    @Action("dz.listDZByDate")
+    @Action(name="dz.listDZByDate")
     public List<DZVO> listDZByDate(Integer pageNum, Integer size, String date) {
         Date date2 = null;
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
@@ -109,7 +108,7 @@ public class DzService {
         return dzDAO.listOneDayDZ(date2, size, pageNum);
     }
 
-    @Action("dz.sizeDZByDate")
+    @Action(name="dz.sizeDZByDate")
     public int sizeDZByDate(String date) {
         Date date2 = null;
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
@@ -122,7 +121,7 @@ public class DzService {
     }
 
 
-    @Action("dz.praise")
+    @Action(name="dz.praise")
     @NeedTicket
     public int praise(Integer userId, Integer dzId) {
         dzDAO.praise(userId, dzId);

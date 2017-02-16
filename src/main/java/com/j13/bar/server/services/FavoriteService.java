@@ -14,13 +14,13 @@ public class FavoriteService {
     @Autowired
     FavoriteDAO favoriteDAO;
 
-    @Action("favorite.add")
+    @Action(name="favorite.add")
     public long add(Integer userId, Integer dzId) {
         long fid = favoriteDAO.add(userId, dzId);
         return fid;
     }
 
-    @Action("favorite.list")
+    @Action(name="favorite.list")
     public List<DZVO> list(Integer userId) {
         return favoriteDAO.list(userId);
     }

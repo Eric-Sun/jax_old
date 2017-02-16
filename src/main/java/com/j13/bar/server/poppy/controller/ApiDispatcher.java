@@ -9,7 +9,10 @@ import com.j13.bar.server.poppy.ErrorResponse;
 import com.j13.bar.server.poppy.RequestData;
 import com.j13.bar.server.poppy.core.ActionMethodInfo;
 import com.j13.bar.server.poppy.core.ActionServiceLoader;
+import com.j13.bar.server.poppy.core.CommandContext;
 import com.j13.bar.server.poppy.core.ParameterInfo;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.ConstructorUtils;
 import org.apache.commons.fileupload.FileItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +28,9 @@ import java.util.Map;
 @Service
 public class ApiDispatcher {
     private static Logger LOG = LoggerFactory.getLogger(ApiDispatcher.class);
+
+    private static String T_KEY = "t";
+    private static String UID_KEY = "uid";
 
     @Autowired
     ActionServiceLoader actionServiceLoader;
@@ -47,23 +53,29 @@ public class ApiDispatcher {
         List<ParameterInfo> parameterInfoList = ami.getParamList();
         List<Object> inputParams = Lists.newLinkedList();
 
+
         for (ParameterInfo pi : parameterInfoList) {
-            LOG.debug(" type = {}, name = {}", pi.getType(), pi.getName());
-            inputParams.add(convertByType(pi.getType(), requestData, pi.getName()));
-        }
+            LOG.debug(" type = {}, name = {}", pi.getClazz(), pi.getName());
+            if (pi.getClazz().equals(CommandContext.class)) {
+                // get and set context
+                CommandContext ctxt = genCommandContextObject(requestData);
+                inputParams.add(ctxt);
+            } else {
+                // request object
+                try {
+                    Object obj = pi.getClazz().newInstance();
+                    BeanUtils.populate(obj, requestData.getData());
+                    inputParams.add(obj);
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                }
+            }
 
-        // need to check t or not
-        boolean isNeedTicket = ami.isNeedTicket();
-        if (isNeedTicket) {
-            String t = requestData.getData().get("t");
-            if (t == null)
-                return new ErrorResponse(ErrorCode.Common.NEED_T);
 
-            int userId = ticketManager.checkTicket(t);
-            if (userId == 0)
-                return new ErrorResponse(ErrorCode.User.NEED_LOGIN);
-
-            requestData.getData().put("userId", userId + "");
         }
 
 
@@ -78,6 +90,15 @@ public class ApiDispatcher {
             }
             return new ErrorResponse(ErrorCode.System.ACTION_REFLECT_ERROR);
         }
+    }
+
+    private CommandContext genCommandContextObject(RequestData requestData) {
+        CommandContext ctxt = new CommandContext();
+        ctxt.setT(requestData.getData().get(T_KEY));
+        if (requestData.getData().get(UID_KEY) != null) {
+            ctxt.setUid(new Integer(requestData.getData().get(UID_KEY)));
+        }
+        return ctxt;
     }
 
 

@@ -1,10 +1,32 @@
 package com.j13.bar.server.poppy.core;
 
+import com.google.common.collect.Lists;
+
 import java.lang.reflect.Type;
+import java.util.List;
 
 public class ParameterInfo {
     private String name;
-    private Type type;
+    private Class clazz;
+    private String desc;
+
+    private List<ParameterInfo> innerList = Lists.newLinkedList();
+
+    public List<ParameterInfo> getInnerList() {
+        return innerList;
+    }
+
+    public void setInnerList(List<ParameterInfo> innerList) {
+        this.innerList = innerList;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
 
     public String getName() {
         return name;
@@ -14,11 +36,11 @@ public class ParameterInfo {
         this.name = name;
     }
 
-    public Type getType() {
-        return type;
+    public Class getClazz() {
+        return clazz;
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setClazz(Class clazz) {
+        this.clazz = clazz;
     }
 }

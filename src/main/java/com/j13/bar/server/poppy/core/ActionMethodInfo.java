@@ -10,6 +10,45 @@ public class ActionMethodInfo {
     private Method actionMethod;
     private String actionName;
     private boolean needTicket = false;
+    private String desc;
+    // request
+    private List<ParameterInfo> paramList = Lists.newLinkedList();
+    private List<ParameterInfo> innerParamList = Lists.newLinkedList();
+    // response
+    private Class response;
+    private List<ParameterInfo> responseParamList = Lists.newLinkedList();
+
+    public Class getResponse() {
+        return response;
+    }
+
+    public void setResponse(Class response) {
+        this.response = response;
+    }
+
+    public List<ParameterInfo> getResponseParamList() {
+        return responseParamList;
+    }
+
+    public void setResponseParamList(List<ParameterInfo> responseParamList) {
+        this.responseParamList = responseParamList;
+    }
+
+    public List<ParameterInfo> getInnerParamList() {
+        return innerParamList;
+    }
+
+    public void setInnerParamList(List<ParameterInfo> innerParamList) {
+        this.innerParamList = innerParamList;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
 
     public boolean isNeedTicket() {
         return needTicket;
@@ -18,8 +57,6 @@ public class ActionMethodInfo {
     public void setNeedTicket(boolean needTicket) {
         this.needTicket = needTicket;
     }
-
-    private List<ParameterInfo> paramList = Lists.newLinkedList();
 
     public List<ParameterInfo> getParamList() {
         return paramList;
