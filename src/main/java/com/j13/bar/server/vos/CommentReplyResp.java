@@ -1,10 +1,17 @@
 package com.j13.bar.server.vos;
 
+import com.j13.bar.server.poppy.anno.Parameter;
+
 public class CommentReplyResp {
+    @Parameter(desc="评论id")
     private int cid;
+    @Parameter(desc="评论内容")
     private String content;
+    @Parameter(desc="用户id")
     private int userId;
+    @Parameter(desc="用户名")
     private String userName;
+    @Parameter(desc="用户头像")
     private String userImg;
 
     public int getCid() {

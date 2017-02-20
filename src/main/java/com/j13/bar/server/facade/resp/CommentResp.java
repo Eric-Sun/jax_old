@@ -1,31 +1,29 @@
-package com.j13.bar.server.vos;
+package com.j13.bar.server.facade.resp;
 
-import com.google.common.collect.Lists;
 import com.j13.bar.server.poppy.anno.Parameter;
 
-import java.util.List;
-
 public class CommentResp {
-    @Parameter(desc = "评论id")
+
+    @Parameter(desc="评论id")
     private int cid;
-    @Parameter(desc="评论的内容")
+    @Parameter(desc="评论内容")
     private String content;
-    @Parameter(desc="创建评论的时间戳")
+    @Parameter(desc="评论产生时间，可能是抓取时间，客户端不显示")
     private long createTime;
-    @Parameter(desc="用户id")
+    @Parameter(desc="评论发布者用户id")
     private int userId;
-    @Parameter(desc="用户名")
+    @Parameter(desc="评论发布者用户名")
     private String userName;
-    @Parameter(desc="用户头像")
+    @Parameter(desc="评论发布者用户头像")
     private String userImg;
-    @Parameter(desc="此条评论点赞的数量")
+    @Parameter(desc="点赞次数")
     private int praiseCount;
-    @Parameter(desc="此条评论分享的次数")
+    @Parameter(desc="分享次数")
     private int shareCount;
-    @Parameter(desc="此条评论的回复评论的数量")
+    @Parameter(desc="总评论次数")
     private int commentCount;
-    @Parameter(desc="回复此评论的评论数量")
-    private List<CommentReplyResp> replys = Lists.newLinkedList();
+    @Parameter(desc="回复此评论id")
+    private int replyCid;
 
     public int getCid() {
         return cid;
@@ -99,11 +97,11 @@ public class CommentResp {
         this.commentCount = commentCount;
     }
 
-    public List<CommentReplyResp> getReplys() {
-        return replys;
+    public int getReplyCid() {
+        return replyCid;
     }
 
-    public void setReplys(List<CommentReplyResp> replys) {
-        this.replys = replys;
+    public void setReplyCid(int replyCid) {
+        this.replyCid = replyCid;
     }
 }

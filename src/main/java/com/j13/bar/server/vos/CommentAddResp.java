@@ -1,18 +1,11 @@
 package com.j13.bar.server.vos;
 
 import com.j13.bar.server.core.HDConstants;
+import com.j13.bar.server.poppy.anno.Parameter;
 
 public class CommentAddResp {
-    private int result = HDConstants.ResponseStatus.SUCCESS;
+    @Parameter(desc="评论id")
     private int cid;
-
-    public int getResult() {
-        return result;
-    }
-
-    public void setResult(int result) {
-        this.result = result;
-    }
 
     public int getCid() {
         return cid;

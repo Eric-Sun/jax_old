@@ -132,12 +132,20 @@ public class ActionServiceLoader implements ApplicationContextAware {
     private List<ParameterInfo> parse(Class clazz) throws NoSuchFieldException {
         List<ParameterInfo> list = Lists.newLinkedList();
         PropertyDescriptor[] pds = PropertyUtils.getPropertyDescriptors(clazz);
-        for (int pdsIndex = 0; pdsIndex < pds.length - 1; pdsIndex++) {
+        for (int pdsIndex = 0; pdsIndex < pds.length; pdsIndex++) {
             ParameterInfo innerPi = new ParameterInfo();
             PropertyDescriptor pd = pds[pdsIndex];
+            if (pd.getName().toLowerCase().equals("class")) {
+                continue;
+            }
             innerPi.setClazz(pd.getPropertyType());
 
-            Parameter pAnno = clazz.getDeclaredField(pd.getName()).getAnnotation(Parameter.class);
+            Parameter pAnno = null;
+            try {
+                pAnno = clazz.getDeclaredField(pd.getName()).getAnnotation(Parameter.class);
+            } catch (NoSuchFieldException e) {
+                LOG.error("class = {},fileName = {}", new Object[]{clazz.getName(), pd.getName()}, e);
+            }
             if (pAnno == null)
                 continue;
             innerPi.setDesc(pAnno.desc());

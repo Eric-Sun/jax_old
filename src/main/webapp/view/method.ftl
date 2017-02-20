@@ -16,13 +16,14 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">接口名称：${doc.name}</h3>
+
                     <h3 class="box-title">接口描述：${doc.desc}</h3>
                 </div>
 
                 <!-- /.box-header -->
                 <div class="box-body table-responsive">
-                    <h4 > 请求接口</h4>
-                    <h4 > ${doc.req.className}</h4>
+                    <h4> 请求接口</h4>
+                    <center><h5> ${doc.req.className}</h5></center>
                     <table id="example1" class="table table-bordered table-striped table-condensed">
                         <thead>
                         <tr>
@@ -44,10 +45,10 @@
                 </div>
                 <!-- /.box-body -->
                 <h4>返回接口</h4>
-                <#list doc.respList as resp>
+            <#list doc.respList as resp>
                 <div class="box-body table-responsive">
 
-                    <h4 >${resp.className}</h4>
+                    <center><h5>${resp.className}</h5></center>
                     <table id="example1" class="table table-bordered table-striped table-condensed ">
                         <thead>
                         <tr>
@@ -57,17 +58,17 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <#list resp.params as param>
-                        <tr>
-                            <td>${param.name}</td>
-                            <td>${param.type?html}</td>
-                            <td>${param.desc}</td>
-                        </tr>
-                        </#list>
+                            <#list resp.params as param>
+                            <tr>
+                                <td>${param.name}</td>
+                                <td>${param.type?html}</td>
+                                <td>${param.desc}</td>
+                            </tr>
+                            </#list>
                         </tbody>
                     </table>
                 </div>
-                </#list>
+            </#list>
             </div>
             <!-- /.box -->
         </div>

@@ -31,6 +31,7 @@ public class ApiDispatcher {
 
     private static String T_KEY = "t";
     private static String UID_KEY = "uid";
+    private static String DEVICE_KEY = "deviceId";
 
     @Autowired
     ActionServiceLoader actionServiceLoader;
@@ -98,6 +99,7 @@ public class ApiDispatcher {
         if (requestData.getData().get(UID_KEY) != null) {
             ctxt.setUid(new Integer(requestData.getData().get(UID_KEY)));
         }
+        ctxt.setDeviceId(requestData.getData().get(DEVICE_KEY));
         return ctxt;
     }
 
