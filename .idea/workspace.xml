@@ -2,24 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="239e95d5-f826-4059-b689-a8ffd3a480cd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/facade/req/FavoriteAddReq.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/facade/resp/FavoriteAddResp.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/facade/req/FavoriteListReq.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/facade/resp/FavoriteListResp.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/poppy/anno/Description.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/CommentService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/DzService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/UserService.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/FavoriteService.java" afterPath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/facade/FavoriteFacade.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/utils/BeanUtils.java" afterPath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/poppy/util/BeanUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/poppy/core/ActionServiceLoader.java" afterPath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/poppy/core/ActionServiceLoader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/poppy/controller/ApiDispatcher.java" afterPath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/poppy/controller/ApiDispatcher.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/poppy/core/CommandContext.java" afterPath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/poppy/core/CommandContext.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/facade/CommentFacade.java" afterPath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/facade/CommentFacade.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/facade/req/CommentListReq.java" afterPath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/facade/req/CommentListReq.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/facade/req/DemoReq.java" afterPath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/facade/req/DemoReq.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/ThumbService.java" afterPath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/services/ThumbService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/facade/UserFacade.java" afterPath="$PROJECT_DIR$/src/main/java/com/j13/bar/server/facade/UserFacade.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.jar" afterPath="$PROJECT_DIR$/server.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/deploy/log4j.properties" afterPath="$PROJECT_DIR$/config/deploy/log4j.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -143,8 +126,8 @@
       <file leaf-file-name="log4j.properties" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/deploy/log4j.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.25817555" vertical-offset="0" max-vertical-offset="581">
-              <caret line="10" column="48" selection-start-line="10" selection-start-column="48" selection-end-line="10" selection-end-column="48" />
+            <state vertical-scroll-proportion="0.18072289" vertical-offset="0" max-vertical-offset="581">
+              <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -673,6 +656,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dev" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1392,12 +1379,12 @@
       <workItem from="1487312488451" duration="4139000" />
       <workItem from="1487472033213" duration="9788000" />
       <workItem from="1487573964059" duration="776000" />
-      <workItem from="1487658760314" duration="3716000" />
+      <workItem from="1487658760314" duration="4073000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="255509000" />
+    <option name="totallyTimeSpent" value="255866000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1947,14 +1934,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/dev/log4j.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="581">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/j13/bar/server/poppy/starter/JettyServerConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="855">
@@ -1987,10 +1966,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/config/dev/log4j.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="581">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/config/deploy/log4j.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25817555" vertical-offset="0" max-vertical-offset="581">
-          <caret line="10" column="48" selection-start-line="10" selection-start-column="48" selection-end-line="10" selection-end-column="48" />
+        <state vertical-scroll-proportion="0.18072289" vertical-offset="0" max-vertical-offset="581">
+          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
           <folding />
         </state>
       </provider>
