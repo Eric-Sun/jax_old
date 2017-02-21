@@ -3,7 +3,6 @@ package com.j13.bar.server.poppy.core;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.j13.bar.server.poppy.anno.Action;
-import com.j13.bar.server.poppy.anno.Description;
 import com.j13.bar.server.poppy.anno.NeedTicket;
 import com.j13.bar.server.poppy.anno.Parameter;
 import org.apache.commons.beanutils.PropertyUtils;

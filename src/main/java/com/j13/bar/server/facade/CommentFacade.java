@@ -8,7 +8,6 @@ import com.j13.bar.server.facade.resp.CommentAddMachineResp;
 import com.j13.bar.server.helper.MachineUserHolder;
 import com.j13.bar.server.helper.TicketManager;
 import com.j13.bar.server.poppy.anno.Action;
-import com.j13.bar.server.poppy.anno.Description;
 import com.j13.bar.server.poppy.anno.NeedTicket;
 import com.j13.bar.server.poppy.core.CommandContext;
 import com.j13.bar.server.vos.*;

@@ -1,6 +1,5 @@
 package com.j13.bar.server.facade.req;
 
-import com.j13.bar.server.poppy.anno.Description;
 import com.j13.bar.server.poppy.anno.Parameter;
 
 public class CommentListReq {

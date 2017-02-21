@@ -100,6 +100,9 @@ public class ApiDispatcher {
             ctxt.setUid(new Integer(requestData.getData().get(UID_KEY)));
         }
         ctxt.setDeviceId(requestData.getData().get(DEVICE_KEY));
+        if (requestData.getFileItem() != null) {
+            ctxt.setFile(requestData.getFileItem());
+        }
         return ctxt;
     }
 

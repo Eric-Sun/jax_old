@@ -15,13 +15,10 @@ import com.j13.bar.server.poppy.core.CommandContext;
 import com.j13.bar.server.services.ThumbService;
 import com.j13.bar.server.utils.MD5Util;
 import com.j13.bar.server.vos.UserVO;
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.fileupload.FileItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Component;
-
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * Created with IntelliJ IDEA.
@@ -55,7 +52,7 @@ public class UserFacade {
             throw new CommonException(ErrorCode.User.PASSWORD_NOT_RIGHT);
         }
 
-        com.j13.bar.server.utils.BeanUtils.copyProperties(resp, vo);
+        com.j13.bar.server.poppy.util.BeanUtils.copyProperties(resp, vo);
         return resp;
     }
 
@@ -72,6 +69,7 @@ public class UserFacade {
         String password = req.getPassword();
         String nickName = req.getNickName();
         int isMachine = req.getIsMachine();
+        FileItem file = ctxt.getFile();
         // check mobile exists
         if (isMachine != HDConstants.USER_IS_MACHINE && userDAO.mobileExisted(mobile)) {
             LOG.info("mobile existed. mobile={}", mobile);
@@ -86,11 +84,11 @@ public class UserFacade {
 
         String passwordAfterMD5 = MD5Util.getMD5String(password);
         String fileName = null;
-//        if (file != null) {
-//            fileName = thumbService.uploadThumb(file);
-//        } else {
-//            fileName = thumbService.randomDefaultThumb();
-//        }
+        if (file != null) {
+            fileName = thumbService.uploadThumb(file);
+        } else {
+            fileName = thumbService.randomDefaultThumb();
+        }
         long id = userDAO.register(mobile, passwordAfterMD5, nickName, isMachine, fileName);
         resp.setId(id);
         return resp;

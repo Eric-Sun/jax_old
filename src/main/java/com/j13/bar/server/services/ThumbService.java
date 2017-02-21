@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.Random;
 
+@Service
 public class ThumbService {
 
     private static Logger LOG = LoggerFactory.getLogger(ThumbService.class);

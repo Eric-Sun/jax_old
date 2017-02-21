@@ -1,4 +1,4 @@
-package com.j13.bar.server.utils;
+package com.j13.bar.server.poppy.util;
 
 import com.j13.bar.server.exceptions.CommonException;
 import com.j13.bar.server.exceptions.ErrorCode;
