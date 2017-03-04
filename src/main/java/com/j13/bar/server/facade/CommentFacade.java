@@ -1,8 +1,8 @@
 package com.j13.bar.server.facade;
 
 import com.j13.bar.server.daos.CommentDAO;
-import com.j13.bar.server.exceptions.CommonException;
-import com.j13.bar.server.exceptions.ErrorCode;
+import com.j13.bar.server.poppy.exceptions.CommonException;
+import com.j13.bar.server.core.ErrorCode;
 import com.j13.bar.server.facade.req.*;
 import com.j13.bar.server.facade.resp.CommentAddMachineResp;
 import com.j13.bar.server.helper.MachineUserHolder;
@@ -41,7 +41,7 @@ public class CommentFacade {
     TicketManager ticketManager;
 
 
-    @Action(name = "comment.addMachine", desc = "抓取系统添加评论")
+    @Action(name = "comment.addMachine", desc = "抓取系统添加评论，如果返回2001说明插入的评论已经在对应的dzId中存在，忽略处理")
     public CommentAddMachineResp addMachine(CommandContext ctxt, CommentAddMachineReq req) {
         CommentAddMachineResp resp = new CommentAddMachineResp();
         int dzId = req.getDzId();
@@ -51,6 +51,10 @@ public class CommentFacade {
         String sourceCommentId = req.getSourceCommentId();
         int userId = machineUserHolder.randomOne();
         int cid = 0;
+        boolean exist = commentDAO.checkMachineCommentExist(dzId, sourceCommentId);
+        if (exist) {
+            throw new CommonException(ErrorCode.Comment.MACHINE_COMMENT_EXISTED);
+        }
         if (isTop == TOP) {
             cid = commentDAO.addMachineTop(dzId, userId, content, hot, sourceCommentId);
         } else {
@@ -103,7 +107,7 @@ public class CommentFacade {
 
     @Action(name = "comment.delete", desc = "删除段子评论")
     @NeedTicket
-    public CommonResultResp delete(CommandContext ctxt,CommentDeleteReq req) {
+    public CommonResultResp delete(CommandContext ctxt, CommentDeleteReq req) {
         int userId = req.getUserId();
         int cid = req.getCid();
 
@@ -114,7 +118,7 @@ public class CommentFacade {
 
     @Action(name = "comment.list", desc = "评论列表")
     @NeedTicket
-    public CommentListResp list(CommandContext ctxt,CommentListReq req) {
+    public CommentListResp list(CommandContext ctxt, CommentListReq req) {
 
         String type = req.getType();
         int dzId = req.getDzId();

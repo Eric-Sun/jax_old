@@ -1,7 +1,7 @@
 package com.j13.bar.server.services;
 
-import com.j13.bar.server.core.config.PropertiesConfiguration;
-import com.j13.bar.server.exceptions.ServerException;
+import com.j13.bar.server.poppy.config.PropertiesConfiguration;
+import com.j13.bar.server.poppy.exceptions.ServerException;
 import org.apache.commons.fileupload.FileItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

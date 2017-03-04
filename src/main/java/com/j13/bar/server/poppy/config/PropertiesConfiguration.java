@@ -1,7 +1,7 @@
-package com.j13.bar.server.core.config;
+package com.j13.bar.server.poppy.config;
 
 
-import com.j13.bar.server.core.exception.RequestFatalException;
+import com.j13.bar.server.poppy.exceptions.RequestFatalException;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,4 +1,4 @@
-package com.j13.bar.server.core.exception;
+package com.j13.bar.server.poppy.exceptions;
 
 public class RequestFatalException extends RuntimeException {
 

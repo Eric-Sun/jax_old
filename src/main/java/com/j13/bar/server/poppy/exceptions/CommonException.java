@@ -1,4 +1,4 @@
-package com.j13.bar.server.exceptions;
+package com.j13.bar.server.poppy.exceptions;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

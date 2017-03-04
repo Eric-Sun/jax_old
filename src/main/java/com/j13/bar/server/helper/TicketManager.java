@@ -1,6 +1,6 @@
 package com.j13.bar.server.helper;
 
-import com.j13.bar.server.core.config.PropertiesConfiguration;
+import com.j13.bar.server.poppy.config.PropertiesConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

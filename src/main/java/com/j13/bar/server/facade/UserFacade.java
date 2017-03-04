@@ -1,11 +1,10 @@
 package com.j13.bar.server.facade;
 
 import com.j13.bar.server.core.HDConstants;
-import com.j13.bar.server.core.log.LOG;
 import com.j13.bar.server.daos.AdminUserDAO;
 import com.j13.bar.server.daos.UserDAO;
-import com.j13.bar.server.exceptions.CommonException;
-import com.j13.bar.server.exceptions.ErrorCode;
+import com.j13.bar.server.poppy.exceptions.CommonException;
+import com.j13.bar.server.core.ErrorCode;
 import com.j13.bar.server.facade.req.UserLoginReq;
 import com.j13.bar.server.facade.req.UserRegisterReq;
 import com.j13.bar.server.facade.resp.UserLoginResp;
@@ -16,6 +15,8 @@ import com.j13.bar.server.services.ThumbService;
 import com.j13.bar.server.utils.MD5Util;
 import com.j13.bar.server.vos.UserVO;
 import org.apache.commons.fileupload.FileItem;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Component;
@@ -29,6 +30,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class UserFacade {
+    private static Logger LOG = LoggerFactory.getLogger(UserFacade.class);
 
     @Autowired
     UserDAO userDAO;

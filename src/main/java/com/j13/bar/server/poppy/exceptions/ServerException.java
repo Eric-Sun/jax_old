@@ -1,4 +1,4 @@
-package com.j13.bar.server.exceptions;
+package com.j13.bar.server.poppy.exceptions;
 
 public class ServerException extends RuntimeException {
 

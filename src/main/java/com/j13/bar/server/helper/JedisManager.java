@@ -1,6 +1,6 @@
 package com.j13.bar.server.helper;
 
-import com.j13.bar.server.core.config.PropertiesConfiguration;
+import com.j13.bar.server.poppy.config.PropertiesConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
-
-import javax.annotation.PostConstruct;
 
 @Service
 @Scope("singleton")

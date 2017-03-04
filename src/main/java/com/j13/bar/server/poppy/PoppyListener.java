@@ -1,6 +1,6 @@
 package com.j13.bar.server.poppy;
 
-import com.j13.bar.server.core.config.PropertiesConfiguration;
+import com.j13.bar.server.poppy.config.PropertiesConfiguration;
 import com.j13.bar.server.helper.JedisManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

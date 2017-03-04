@@ -193,4 +193,17 @@ public class CommentDAO {
         String sql = "select count(1) from comment where dz_id=?";
         return j.queryForObject(sql, new Object[]{dzId}, Integer.class);
     }
+
+    /**
+     * 检查插入的机器抓取的评论是否已经存在
+     *
+     * @param dzId
+     * @param sourceCommentId
+     * @return 如果存在返回true
+     */
+    public boolean checkMachineCommentExist(int dzId, String sourceCommentId) {
+        String sql = "select count(1) from comment where dz_id=? and source_comment_id=?";
+        int count = j.queryForObject(sql, new Object[]{}, Integer.class);
+        return count > 0 ? true : false;
+    }
 }

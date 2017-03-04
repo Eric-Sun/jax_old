@@ -1,4 +1,4 @@
-package com.j13.bar.server.exceptions;
+package com.j13.bar.server.core;
 
 public class ErrorCode {
 
@@ -19,7 +19,11 @@ public class ErrorCode {
         public static int SYSTEM_ERROR = 1;
         public static int NOT_FOUND_ACTION = 2;
         public static int ACTION_REFLECT_ERROR = 3;
-        public static int REFLECT_ERROR=4;
+        public static int REFLECT_ERROR = 4;
+    }
+
+    public static class Comment {
+        public static int MACHINE_COMMENT_EXISTED = 2001;
     }
 
 

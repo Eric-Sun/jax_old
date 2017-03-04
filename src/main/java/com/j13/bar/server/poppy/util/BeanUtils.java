@@ -1,7 +1,7 @@
 package com.j13.bar.server.poppy.util;
 
-import com.j13.bar.server.exceptions.CommonException;
-import com.j13.bar.server.exceptions.ErrorCode;
+import com.j13.bar.server.poppy.exceptions.CommonException;
+import com.j13.bar.server.core.ErrorCode;
 
 public class BeanUtils {
 
