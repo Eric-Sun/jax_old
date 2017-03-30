@@ -203,7 +203,7 @@ public class CommentDAO {
      */
     public boolean checkMachineCommentExist(int dzId, String sourceCommentId) {
         String sql = "select count(1) from comment where dz_id=? and source_comment_id=?";
-        int count = j.queryForObject(sql, new Object[]{}, Integer.class);
+        int count = j.queryForObject(sql, new Object[]{dzId,sourceCommentId}, Integer.class);
         return count > 0 ? true : false;
     }
 }

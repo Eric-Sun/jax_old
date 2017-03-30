@@ -7,23 +7,13 @@ import java.util.Map;
 
 public class RequestData {
 
-    private FileItem fileItem;
+    private Map<String,Object> data = Maps.newLinkedHashMap();
 
-    private Map<String,String> data = Maps.newLinkedHashMap();
-
-    public FileItem getFileItem() {
-        return fileItem;
-    }
-
-    public void setFileItem(FileItem fileItem) {
-        this.fileItem = fileItem;
-    }
-
-    public Map<String, String> getData() {
+    public Map<String, Object> getData() {
         return data;
     }
 
-    public void setData(Map<String, String> data) {
+    public void setData(Map<String, Object> data) {
         this.data = data;
     }
 }

@@ -7,15 +7,6 @@ public class CommandContext {
     private int uid = 0;
     private String t;
     private String deviceId;
-    private FileItem file;
-
-    public FileItem getFile() {
-        return file;
-    }
-
-    public void setFile(FileItem file) {
-        this.file = file;
-    }
 
     public String getDeviceId() {
         return deviceId;

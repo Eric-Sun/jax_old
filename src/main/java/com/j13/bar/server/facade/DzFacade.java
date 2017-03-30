@@ -21,6 +21,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
@@ -82,7 +83,7 @@ public class DzFacade {
     }
 
 
-    @Action(name = "dz.addFetchedDZ", desc = "抓取系统添加段子的接口")
+    @Action(name = "dz.addFetchedDZ", desc = "抓取系统添加段子的接口，如果段子已经存在，返回对应的段子Id")
     public AddFetchedDZResp addFetchedDZ(CommandContext ctxt, AddFetchedDZReq req) {
         AddFetchedDZResp resp = new AddFetchedDZResp();
         String content = req.getContent();
@@ -90,10 +91,15 @@ public class DzFacade {
         int fetchSource = req.getFetchSource();
         String sourceDZId = req.getSourceDZId();
         int machineUser = machineUserHolder.randomOne();
-        // 查看该内容是否有
-        if (dzDAO.checkExist(md5)) {
-            LOG.info("dz existed. md5 = " + md5);
-            resp.setId(-1);
+
+        long savedDzId = 0;
+        try {
+            savedDzId = dzDAO.getDZByMd5(md5);
+        } catch (DataAccessException e) {
+            LOG.info("dz existed. md5 = {}", md5);
+        }
+        if (savedDzId != 0) {
+            resp.setId(savedDzId);
             return resp;
         }
         long id = dzDAO.addMachine(machineUser, content, HDConstants.DEFAULT_IMG_ID, md5, fetchSource,
@@ -132,7 +138,7 @@ public class DzFacade {
             resp.setId(-1);
             return resp;
         }
-        int id = dzDAO.add(userId, content, md5);
+        long id = dzDAO.add(userId, content, md5);
         resp.setId(id);
         return resp;
     }

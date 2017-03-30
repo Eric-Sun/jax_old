@@ -83,7 +83,7 @@ public class ApiDispatcher {
         } catch (IllegalAccessException e) {
             return new ErrorResponse(ErrorCode.System.ACTION_REFLECT_ERROR);
         } catch (InvocationTargetException e) {
-            LOG.error("", e.getTargetException());
+//            LOG.error("", e.getTargetException());
             if (e.getTargetException().getClass().equals(CommonException.class)) {
                 return new ErrorResponse(((CommonException) e.getTargetException()).getErrorCode());
             }
@@ -93,51 +93,13 @@ public class ApiDispatcher {
 
     private CommandContext genCommandContextObject(RequestData requestData) {
         CommandContext ctxt = new CommandContext();
-        ctxt.setT(requestData.getData().get(T_KEY));
+        ctxt.setT(requestData.getData().get(T_KEY).toString());
         if (requestData.getData().get(UID_KEY) != null) {
-            ctxt.setUid(new Integer(requestData.getData().get(UID_KEY)));
+            ctxt.setUid(new Integer(requestData.getData().get(UID_KEY).toString()));
         }
-        ctxt.setDeviceId(requestData.getData().get(DEVICE_KEY));
-        if (requestData.getFileItem() != null) {
-            ctxt.setFile(requestData.getFileItem());
-        }
+        ctxt.setDeviceId(requestData.getData().get(DEVICE_KEY).toString());
+
         return ctxt;
-    }
-
-
-    private Object convertByType(Type type, RequestData requestData, String name) {
-
-        if (type.equals(FileItem.class)) {
-            if (requestData.getFileItem() == null) {
-                return null;
-            } else {
-                return requestData.getFileItem();
-            }
-        }
-        Object value = requestData.getData().get(name);
-        if (value == null) {
-            if (type.equals(String.class)) {
-                return "";
-            } else if (type.equals(Integer.class)) {
-                return 0;
-            } else if (type.equals(Long.class)) {
-                return 0;
-            } else if (type.equals(FileItem.class)) {
-                return null;
-            } else
-                return null;
-        } else {
-            if (type.equals(String.class)) {
-                return value;
-            } else if (type.equals(Integer.class)) {
-                return new Integer(value.toString()).intValue();
-            } else if (type.equals(Long.class)) {
-                return new Long(value.toString()).longValue();
-            } else if (type.equals(FileItem.class)) {
-                return (FileItem) value;
-            } else
-                return null;
-        }
     }
 
 }

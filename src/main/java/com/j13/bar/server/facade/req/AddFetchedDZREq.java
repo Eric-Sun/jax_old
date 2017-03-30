@@ -6,7 +6,7 @@ public class AddFetchedDZReq {
     //String content, String md5, Integer fetchSource, String sourceDZId
 
     @Parameter(desc = "段子内容")
-    private String content;
+        private String content;
     @Parameter(desc = "MD5")
     private String md5;
     @Parameter(desc = "来源id")

@@ -82,7 +82,7 @@ public class MainController {
             List<FileItem> list = upload.parseRequest(request);
             for (FileItem item : list) {
                 if (!item.isFormField()) {
-                    requestData.setFileItem(item);
+                    requestData.getData().put(item.getFieldName(), item);
                 } else {
                     requestData.getData().put(item.getFieldName(), item.getString());
                 }

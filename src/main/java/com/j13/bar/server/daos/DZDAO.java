@@ -72,11 +72,28 @@ public class DZDAO {
         return holder.getKey().longValue();
     }
 
+    /**
+     * 通过MD5判断一个dz是否存在
+     *
+     * @param md5
+     * @return 如果存在返回true，不存在返回false
+     */
     public boolean checkExist(String md5) {
         String sql = "select count(1) from dz where md5=?";
         return j.queryForObject(sql, new Object[]{md5}, Integer.class) == 0 ? false : true;
     }
 
+
+    /**
+     * 如果MD5获取一个dz，如果获取不到则抛出异常，如果可以获取到返回dzId
+     *
+     * @param md5
+     * @return
+     */
+    public long getDZByMd5(String md5) {
+        String sql = "select id from dz where md5=?";
+        return j.queryForObject(sql, new Object[]{md5}, Long.class);
+    }
 
     public List<Integer> getNoUserDZ(int limitSize) {
         String sql = "select id from dz where user_id=1 limit " + limitSize;
@@ -107,7 +124,7 @@ public class DZDAO {
     }
 
 
-    public int add(final int userId, final String content, final String md5) {
+    public long add(final int userId, final String content, final String md5) {
         final String sql = "insert into dz (user_id,content,img_id,createtime,md5) values (?,?,?,now(),?)";
         KeyHolder holder = new GeneratedKeyHolder();
 
@@ -122,7 +139,7 @@ public class DZDAO {
             }
         }, holder);
 
-        return holder.getKey().intValue();
+        return holder.getKey().longValue();
     }
 
     public List<DZVO> listOneDayDZ(java.util.Date date, int size, int pageNum) {

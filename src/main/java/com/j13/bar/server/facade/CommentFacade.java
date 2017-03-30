@@ -124,12 +124,20 @@ public class CommentFacade {
         int dzId = req.getDzId();
         int lastId = req.getLastId();
         int pageSize = req.getPageSize();
+        String category = req.getCategory();
         CommentListResp resp = new CommentListResp();
         List<CommentVO> commentVOList = null;
         if (type.equals(LOADMORE)) {
-            commentVOList = commentDAO.listCommon(dzId, lastId, pageSize);
+            if (category.equals(NEW))
+                commentVOList = commentDAO.listCommon(dzId, lastId, pageSize);
+            else
+                commentVOList = commentDAO.listTop(dzId, lastId, pageSize);
         } else if (type.equals(REFRESH)) {
-            commentVOList = commentDAO.listCommon(dzId, 0, pageSize);
+
+            if (category.equals(NEW))
+                commentVOList = commentDAO.listCommon(dzId, 0, pageSize);
+            else
+                commentVOList = commentDAO.listTop(dzId, 0, pageSize);
         } else {
             throw new CommonException(ErrorCode.Common.INPUT_PARAMETER_ERROR);
         }

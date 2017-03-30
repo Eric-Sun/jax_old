@@ -71,7 +71,7 @@ public class UserFacade {
         String password = req.getPassword();
         String nickName = req.getNickName();
         int isMachine = req.getIsMachine();
-        FileItem file = ctxt.getFile();
+        FileItem file = req.getHeadImg();
         // check mobile exists
         if (isMachine != HDConstants.USER_IS_MACHINE && userDAO.mobileExisted(mobile)) {
             LOG.info("mobile existed. mobile={}", mobile);
